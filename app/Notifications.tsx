@@ -28,7 +28,7 @@ export default function Notifications({ children }: Props) {
     <Popover className="relative">
       <Popover.Button>{children}</Popover.Button>
 
-      <Popover.Panel className="absolute right-0 top-10 z-10">
+      <Popover.Panel className="absolute -right-1 top-10 z-10">
         <div className="w-80">
           <Card>
             <h2 className="border-b pb-3">Notifications</h2>
