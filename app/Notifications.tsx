@@ -26,7 +26,7 @@ type Props = { children: ReactNode };
 export default function Notifications({ children }: Props) {
   return (
     <Popover className="relative">
-      <Popover.Button>{children}</Popover.Button>
+      <Popover.Button as="div">{children}</Popover.Button>
 
       <Popover.Panel className="absolute -right-1 top-10 z-10">
         <div className="w-80">
