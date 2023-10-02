@@ -29,10 +29,8 @@ function ProjectCard() {
 
 export default function Dashboard() {
   return (
-    <main className="container mx-auto mt-8">
-      <div className="grid grid-cols-3 gap-4">
-        <ProjectCard />
-      </div>
+    <main className="grid grid-cols-3 gap-4">
+      <ProjectCard />
     </main>
   );
 }
