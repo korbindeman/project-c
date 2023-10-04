@@ -1,8 +1,12 @@
 import { StarIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
 function ProjectCard() {
   return (
-    <div className="cursor-pointer rounded-lg border p-8 transition hover:bg-gray-50">
+    <Link
+      href="/ogsm/1"
+      className="cursor-pointer rounded-lg border p-8 transition hover:bg-gray-50"
+    >
       <div className="mb-14 flex justify-between">
         <div className="">
           <h2>Example Title</h2>
@@ -19,11 +23,11 @@ function ProjectCard() {
         <div className="flex items-center">
           <span className="pr-2 text-sm text-gray-600">1/2</span>
           <div className="h-2.5 w-32 rounded-full bg-gray-200">
-            <div className="h-2.5 w-1/2 rounded-full bg-blue-500"></div>
+            <div className="h-2.5 w-[50%] rounded-full bg-blue-500"></div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
