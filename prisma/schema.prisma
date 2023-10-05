@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Ogsm {
+  id         Int        @id @default(autoincrement())
+  creator    User       @relation(fields: [userId], references: [id])
+  objective  String
+  goals      Goal[]
+  strategies Strategy[]
+  userId     Int
+}
+
+model Goal {
+  id      Int    @id @default(autoincrement())
+  ogsm    Ogsm   @relation(fields: [ogsmId], references: [id])
+  content String
+  ogsmId  Int
+}
+
+model Strategy {
+  id        Int         @id @default(autoincrement())
+  ogsm      Ogsm        @relation(fields: [ogsmId], references: [id])
+  dashboard Dashboard[]
+  actions   Action[]
+  ogsmId    Int
+}
+
+model Dashboard {
+  id         Int      @id @default(autoincrement())
+  strategy   Strategy @relation(fields: [strategyId], references: [id])
+  content    String
+  strategyId Int
+}
+
+model Action {
+  id         Int      @id @default(autoincrement())
+  strategy   Strategy @relation(fields: [strategyId], references: [id])
+  content    String
+  status     String
+  strategyId Int
+}
+
+model User {
+  id            Int    @id @default(autoincrement())
+  created_ogsms Ogsm[]
+}
