@@ -1,35 +1,40 @@
 {
-    "name": "project-c",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "format": "prettier --write --ignore-path .gitignore ."
-    },
-    "dependencies": {
-        "@headlessui/react": "^1.7.17",
-        "@heroicons/react": "^2.0.18",
-        "@prisma/client": "^5.4.1",
-        "next": "latest",
-        "prettier": "^3.0.3",
-        "react": "latest",
-        "react-dom": "latest"
-    },
-    "devDependencies": {
-        "@types/node": "latest",
-        "@types/react": "latest",
-        "@types/react-dom": "latest",
-        "autoprefixer": "latest",
-        "eslint": "latest",
-        "eslint-config-next": "latest",
-        "eslint-config-prettier": "^9.0.0",
-        "postcss": "latest",
-        "prettier-plugin-tailwindcss": "^0.5.4",
-        "prisma": "^5.4.1",
-        "tailwindcss": "latest",
-        "typescript": "latest"
-    }
+  "name": "project-c",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@prisma/client": "^5.4.1",
+    "@tiptap/extension-underline": "^2.1.11",
+    "@tiptap/pm": "^2.1.11",
+    "@tiptap/react": "^2.1.11",
+    "@tiptap/starter-kit": "^2.1.11",
+    "next": "latest",
+    "prettier": "^3.0.3",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "^9.0.0",
+    "postcss": "latest",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "prisma": "^5.4.1",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
 }
