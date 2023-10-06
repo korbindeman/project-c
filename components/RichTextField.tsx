@@ -3,7 +3,7 @@
 import { EditorProvider, BubbleMenu, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
-import { ListBulletIcon } from "@heroicons/react/24/solid";
+import { ListBulletIcon } from "@heroicons/react/20/solid";
 import { MouseEventHandler, ReactNode } from "react";
 import Card from "./Card";
 
@@ -20,9 +20,9 @@ function Button({ name, content, onClick }: ButtonProps) {
   return (
     <div
       onClick={onClick}
-      className="cursor-pointer rounded p-1 transition hover:bg-gray-100"
+      className="cursor-pointer rounded px-1 transition hover:bg-gray-100"
     >
-      <abbr title={name} className="no-underline">
+      <abbr title={name} className="flex h-full items-center no-underline">
         {content}
       </abbr>
     </div>
@@ -66,7 +66,7 @@ function Menu() {
     <BubbleMenu>
       <Card noPadding={true}>
         <div className="p-1">
-          <div className="flex items-center gap-1">
+          <div className="flex gap-1">
             {buttons.map((buttonGroup) => (
               <>
                 {buttonGroup.map((button) => (
