@@ -64,7 +64,7 @@ function Menu() {
 
   return (
     <BubbleMenu>
-      <Card noPadding={true}>
+      <Card noPadding>
         <div className="p-1">
           <div className="flex gap-1">
             {buttons.map((buttonGroup) => (
@@ -97,8 +97,7 @@ export default function RichTextField({ content }: RichTextFieldProps) {
       content={content}
       editorProps={{
         attributes: {
-          class:
-            "p-2 prose text-sm outline-none hover:bg-gray-50 transition rounded-lg",
+          class: "p-1 text-sm outline-none hover:bg-gray-50 transition rounded",
         },
       }}
     >
