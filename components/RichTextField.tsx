@@ -97,7 +97,8 @@ export default function RichTextField({ content }: RichTextFieldProps) {
       content={content}
       editorProps={{
         attributes: {
-          class: "p-1 text-sm outline-none hover:bg-gray-50 transition rounded",
+          class:
+            " p-2 prose max-w-none prose-sm outline-none hover:bg-gray-50 transition rounded",
         },
       }}
     >
