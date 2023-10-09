@@ -52,7 +52,7 @@ export default function Ogsm() {
     <>
       <Link
         href="/dashboard"
-        className="mb-1 flex items-center text-sm text-gray-600 transition hover:text-gray-700"
+        className="mb-1 mt-14 flex items-center text-sm text-gray-600 transition hover:text-gray-700"
       >
         <ArrowLeftIcon className="mr-1 h-4 w-4" />
         Back
