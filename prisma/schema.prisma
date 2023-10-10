@@ -13,7 +13,9 @@ datasource db {
 
 model Ogsm {
   id         Int        @id @default(autoincrement())
+  slug       String     @unique
   creator    User       @relation(fields: [userId], references: [id])
+  title      String
   objective  String
   goals      Goal[]
   strategies Strategy[]
@@ -30,6 +32,7 @@ model Goal {
 model Strategy {
   id        Int         @id @default(autoincrement())
   ogsm      Ogsm        @relation(fields: [ogsmId], references: [id])
+  content   String
   dashboard Dashboard[]
   actions   Action[]
   ogsmId    Int
