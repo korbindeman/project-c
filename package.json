@@ -33,6 +33,7 @@
     "eslint-config-next": "latest",
     "eslint-config-prettier": "^9.0.0",
     "postcss": "latest",
+    "prettier-plugin-organize-imports": "^3.2.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "prisma": "^5.4.2",
     "tailwindcss": "latest",
