@@ -1,9 +1,9 @@
 "use client";
 
-import { EditorProvider, BubbleMenu, useCurrentEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Underline from "@tiptap/extension-underline";
 import { ListBulletIcon } from "@heroicons/react/20/solid";
+import Underline from "@tiptap/extension-underline";
+import { BubbleMenu, EditorProvider, useCurrentEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 import { MouseEventHandler, ReactNode } from "react";
 import Card from "./Card";
 

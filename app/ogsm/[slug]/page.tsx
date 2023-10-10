@@ -2,7 +2,7 @@ import Card from "@/components/Card";
 import RichTextField from "@/components/RichTextField";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import { LinkIcon, EyeIcon, StarIcon } from "@heroicons/react/24/outline";
+import { EyeIcon, LinkIcon, StarIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -46,7 +46,6 @@ async function getData(slug: string) {
 }
 
 export default async function Ogsm({ params }: { params: { slug: string } }) {
-  // await createExampleItems();
   const data = await getData(params.slug);
 
   return (
