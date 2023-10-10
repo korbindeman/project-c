@@ -1,6 +1,12 @@
 import { ReactNode } from "react";
 
-type Props = { children?: ReactNode };
-export default function Card({ children }: Props) {
-  return <div className="rounded-lg border bg-white p-8">{children}</div>;
+type Props = { children?: ReactNode; noPadding?: Boolean };
+export default function Card({ children, noPadding }: Props) {
+  return (
+    <div
+      className={`h-full rounded-lg border bg-white ${noPadding ? "" : "p-6"}`}
+    >
+      {children}
+    </div>
+  );
 }

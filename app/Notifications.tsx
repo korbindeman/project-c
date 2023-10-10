@@ -1,14 +1,10 @@
-"use client";
-
-import Card from "@/components/Card";
 import Dropdown from "@/components/Dropdown";
-import { Popover } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { ReactNode } from "react";
 
 function Notification() {
   return (
-    <div className="cursor-pointer border-b px-2 py-4 last:border-b-0 hover:bg-gray-50">
+    <div className="cursor-pointer border-b px-2 py-4 last:border-0 hover:bg-gray-50">
       <div className="flex items-start gap-2">
         <div className="py-1.5">
           <div className="h-2 w-2 rounded-full bg-blue-400"></div>
@@ -38,24 +34,13 @@ export default function Notifications({ children }: Props) {
       }
     >
       <div className="flex items-center justify-between pb-3">
-        <h2 className="">Notifications</h2>
+        <h2 className="text-sm">Notifications</h2>
         <span className="flex cursor-pointer items-center p-1 text-xs font-semibold text-blue-500 transition hover:text-blue-600">
           <CheckIcon className="h-4 w-4" />
           Mark as read
         </span>
       </div>
-      <div className="max-h-72 overflow-y-auto rounded border">
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
-        <Notification />
+      <div className="max-h-72 overflow-y-auto">
         <Notification />
         <Notification />
         <Notification />
