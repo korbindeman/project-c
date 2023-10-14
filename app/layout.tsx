@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/ThemeProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./Navbar";
@@ -18,8 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <div className="container mx-auto mt-8">{children}</div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <div className="container mx-auto mt-8">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,10 +1,12 @@
 import Card from "@/components/Card";
 import RichTextField from "@/components/RichTextField";
+import Tooltip from "@/components/Tooltip";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import { EyeIcon, LinkIcon, StarIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { ReactNode } from "react";
+import Action from "./Action";
 
 interface SectionProps {
   title: string | ReactNode;
@@ -14,7 +16,7 @@ interface SectionProps {
 function Section({ title, children, className }: SectionProps) {
   return (
     <div className={className + " flex h-full flex-col"}>
-      <h2 className="py-1 text-sm text-gray-500">{title}</h2>
+      <h2 className="py-1 text-sm text-neutral-500">{title}</h2>
       <div className="grow">{children}</div>
     </div>
   );
@@ -49,10 +51,10 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
   const data = await getData(params.slug);
 
   return (
-    <>
+    <main>
       <Link
         href="/dashboard"
-        className="mb-1 mt-12 flex items-center text-sm text-gray-600 transition hover:text-gray-700"
+        className="mb-1 mt-12 flex items-center text-sm text-neutral-600 transition hover:text-neutral-700"
       >
         <ArrowLeftIcon className="mr-1 h-4 w-4" />
         Back
@@ -60,21 +62,26 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
       <div className="mb-6 flex items-center justify-between">
         <div className="">
           <h1>{data?.title}</h1>
-          <p className="text-sm text-gray-500">Created by Korbin de Man</p>
+          <p className="text-sm text-neutral-500">Created by Korbin de Man</p>
         </div>
         <div className="flex gap-1">
-          <div className="cursor-pointer rounded-full bg-amber-100 p-2 transition hover:bg-amber-200">
-            <span className="flex items-center gap-1 text-sm text-amber-600">
-              <StarIcon className="h-5 w-5" />
-            </span>
-          </div>
-          <div className="cursor-pointer rounded-full bg-blue-100 p-2 transition hover:bg-blue-200">
-            <span className="flex items-center gap-1 text-sm text-blue-600">
-              <LinkIcon className="h-5 w-5" />
-            </span>
-          </div>
-          <div className="cursor-pointer rounded-full bg-gray-100 p-2 transition hover:bg-gray-200">
-            <span className="flex items-center gap-1 px-1 text-sm text-gray-600">
+          <Tooltip content="Favorite">
+            <div className="cursor-pointer rounded-full bg-amber-100 p-2 transition hover:bg-amber-200">
+              <span className="flex items-center gap-1 text-sm text-amber-600">
+                <StarIcon className="h-5 w-5" />
+              </span>
+            </div>
+          </Tooltip>
+
+          <Tooltip content="Share">
+            <div className="cursor-pointer rounded-full bg-blue-100 p-2 transition hover:bg-blue-200">
+              <span className="flex items-center gap-1 text-sm text-blue-600">
+                <LinkIcon className="h-5 w-5" />
+              </span>
+            </div>
+          </Tooltip>
+          <div className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
+            <span className="flex items-center gap-1 px-1 text-sm text-neutral-600">
               <EyeIcon className="h-5 w-5" />
               Viewing
             </span>
@@ -101,9 +108,9 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
         <Section
           title={
             <div className="grid grid-cols-4">
-              <h2 className="text-sm text-gray-500">Strategy</h2>
-              <h2 className="text-sm text-gray-500">Dashboard</h2>
-              <h2 className="text-sm text-gray-500">Actions</h2>
+              <h2 className="text-sm text-neutral-500">Strategy</h2>
+              <h2 className="text-sm text-neutral-500">Dashboard</h2>
+              <h2 className="text-sm text-neutral-500">Actions</h2>
             </div>
           }
           className="col-span-4"
@@ -127,7 +134,7 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
                 </div>
                 <div className="col-span-2 p-1">
                   {strategy.actions.map((action) => (
-                    <RichTextField content={action.content} key={action.id} />
+                    <Action action={action} key={action.id} />
                   ))}
                 </div>
               </div>
@@ -136,6 +143,6 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
         </Section>
         <div className="col-span-4"></div>
       </div>
-    </>
+    </main>
   );
 }
