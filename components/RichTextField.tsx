@@ -20,7 +20,7 @@ function Button({ name, content, onClick }: ButtonProps) {
   return (
     <div
       onClick={onClick}
-      className="cursor-pointer rounded px-1 transition hover:bg-gray-100"
+      className="cursor-pointer rounded px-1 transition hover:bg-neutral-100"
     >
       <abbr title={name} className="flex h-full items-center no-underline">
         {content}
@@ -77,7 +77,7 @@ function Menu() {
                     key={button.name}
                   ></Button>
                 ))}
-                <div className="w-px self-stretch bg-gray-200 last:hidden"></div>
+                <div className="w-px self-stretch bg-neutral-200 last:hidden"></div>
               </>
             ))}
           </div>
@@ -89,16 +89,19 @@ function Menu() {
 
 interface RichTextFieldProps {
   content?: string;
+  className?: string;
 }
-export default function RichTextField({ content }: RichTextFieldProps) {
+export default function RichTextField({
+  content,
+  className,
+}: RichTextFieldProps) {
   return (
     <EditorProvider
       extensions={extensions}
       content={content}
       editorProps={{
         attributes: {
-          class:
-            " p-2 prose max-w-none prose-sm outline-none hover:bg-gray-50 transition rounded",
+          class: "prose prose-sm outline-none " + className,
         },
       }}
     >

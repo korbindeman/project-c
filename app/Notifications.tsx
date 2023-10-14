@@ -4,14 +4,14 @@ import { ReactNode } from "react";
 
 function Notification() {
   return (
-    <div className="cursor-pointer border-b px-2 py-4 last:border-0 hover:bg-gray-50">
+    <div className="cursor-pointer border-b px-2 py-4 last:border-0 hover:bg-neutral-50">
       <div className="flex items-start gap-2">
         <div className="py-1.5">
           <div className="h-2 w-2 rounded-full bg-blue-400"></div>
         </div>
         <div className="">
           <h3 className="text-sm">Notification title</h3>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-neutral-500">
             Notification description. Lorem ipsum dolor sit amet.
           </p>
         </div>
@@ -27,7 +27,7 @@ export default function Notifications({ children }: Props) {
       button={
         <>
           {children}{" "}
-          <span className="absolute right-0 top-0 inline-flex -translate-y-1/4 translate-x-1/4 transform items-center justify-center rounded-full bg-red-600 px-1.5 py-1 text-xs font-bold leading-none text-red-100">
+          <span className="absolute right-0 top-0 inline-flex -translate-y-1/4 translate-x-1/4 transform cursor-pointer items-center justify-center rounded-full bg-red-600 px-1.5 py-1 text-xs font-bold leading-none text-red-100">
             2
           </span>
         </>
