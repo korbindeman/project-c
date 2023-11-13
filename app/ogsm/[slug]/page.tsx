@@ -3,16 +3,18 @@ import RichTextField from "@/components/RichTextField";
 import Tooltip from "@/components/Tooltip";
 import { prisma } from "@/lib/prisma";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import { EyeIcon, LinkIcon, StarIcon } from "@heroicons/react/24/outline";
+import { EyeIcon, LinkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { ReactNode } from "react";
 import Action from "./Action";
+import FavoriteButton from "./FavoriteButton";
 
 interface SectionProps {
   title: string | ReactNode;
   children: ReactNode;
   className?: string;
 }
+
 function Section({ title, children, className }: SectionProps) {
   return (
     <div className={className + " flex h-full flex-col"}>
@@ -67,9 +69,7 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
         <div className="flex gap-1">
           <Tooltip content="Favorite">
             <div className="cursor-pointer rounded-full bg-amber-100 p-2 transition hover:bg-amber-200">
-              <span className="flex items-center gap-1 text-sm text-amber-600">
-                <StarIcon className="h-5 w-5" />
-              </span>
+              <FavoriteButton></FavoriteButton>
             </div>
           </Tooltip>
 
