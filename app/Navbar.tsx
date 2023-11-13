@@ -1,3 +1,4 @@
+import Tooltip from "@/components/Tooltip";
 import { Input } from "@/components/ui/input";
 import {
   BellIcon,
@@ -17,21 +18,27 @@ export default function Navbar() {
         </div>
         <div className="w-1/3">
           <ul className="flex justify-end gap-2">
-            <div className="">
-              <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
-                <Cog6ToothIcon className="h-5 w-5 text-neutral-500" />
-              </li>
-            </div>
-            <Notifications>
-              <li className="relative cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
-                <BellIcon className="h-5 w-5 text-neutral-500" />
-              </li>
-            </Notifications>
-            <Link href={"/dashboard"}>
-              <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
-                <UserCircleIcon className="h-5 w-5 text-neutral-500" />
-              </li>
-            </Link>
+            <Tooltip content="Settings">
+              <div className="">
+                <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
+                  <Cog6ToothIcon className="h-5 w-5 text-neutral-500" />
+                </li>
+              </div>
+            </Tooltip>
+            <Tooltip content="Notifications">
+              <Notifications>
+                <li className="relative cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
+                  <BellIcon className="h-5 w-5 text-neutral-500" />
+                </li>
+              </Notifications>
+            </Tooltip>
+            <Tooltip content="Dashboard">
+              <Link href={"/dashboard"}>
+                <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
+                  <UserCircleIcon className="h-5 w-5 text-neutral-500" />
+                </li>
+              </Link>
+            </Tooltip>
           </ul>
         </div>
       </div>
