@@ -19,11 +19,11 @@ export default function Navbar() {
         <div className="w-1/3">
           <ul className="flex justify-end gap-2">
             <Tooltip content="Settings">
-              <div className="">
+              <Link href={"/settings"}>
                 <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
                   <Cog6ToothIcon className="h-5 w-5 text-neutral-500" />
                 </li>
-              </div>
+              </Link>
             </Tooltip>
             <Tooltip content="Notifications">
               <Notifications>
