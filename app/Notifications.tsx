@@ -25,12 +25,12 @@ export default function Notifications({ children }: Props) {
   return (
     <Dropdown
       button={
-        <>
+        <div className="relative">
           {children}{" "}
           <span className="absolute right-0 top-0 inline-flex -translate-y-1/4 translate-x-1/4 transform cursor-pointer items-center justify-center rounded-full bg-red-600 px-1.5 py-1 text-xs font-bold leading-none text-red-100">
             2
           </span>
-        </>
+        </div>
       }
     >
       <div className="flex items-center justify-between pb-3">
