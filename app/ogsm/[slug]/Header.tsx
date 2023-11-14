@@ -26,7 +26,7 @@ export default function Header({ title, creator }: Props) {
                 Created by {creator}
               </p>
             </div>
-            <div className="flex gap-2 text-gray-800">
+            <div className="flex gap-2 text-gray-600">
               <FavoriteButton />
               <Button className="flex items-center p-2" variant="outline">
                 <ArrowUpOnSquareIcon className="h-5 w-5" />
