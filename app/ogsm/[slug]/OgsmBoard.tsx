@@ -34,7 +34,10 @@ export default function OgsmBoard({ ogsm }: Props) {
       <Section title="Goal" className="col-span-5">
         <Card>
           <PaddingThing>
-            <RichTextField content={ogsm?.objective} />
+            <RichTextField
+              content={ogsm?.objective}
+              className="max-w-full py-2"
+            />
           </PaddingThing>
         </Card>
       </Section>
