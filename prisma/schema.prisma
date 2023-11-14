@@ -55,5 +55,6 @@ model Action {
 
 model User {
   id            Int    @id @default(autoincrement())
+  name          String
   created_ogsms Ogsm[]
 }
