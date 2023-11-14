@@ -76,40 +76,44 @@ export default async function Dashboard() {
   const actions = await getActions();
 
   return (
-    <main className="flex items-stretch gap-8">
-      <div className="w-3/4">
-        <h2 className="mb-4 text-2xl font-semibold tracking-tight">Ogsms</h2>
-        <div className="flex justify-between pb-4">
-          <Input placeholder="Search ogsms" className="w-96" />
-          <Button>Create new</Button>
+    <div className="container mx-auto py-8">
+      <main className="flex items-stretch gap-8">
+        <div className="w-3/4">
+          <h2 className="mb-4 text-2xl font-semibold tracking-tight">Ogsms</h2>
+          <div className="flex justify-between pb-4">
+            <Input placeholder="Search ogsms" className="w-96" />
+            <Button>Create new</Button>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {ogsms.map((ogsm) => (
+              <ProjectCard ogsm={ogsm} key={ogsm.id} />
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          {ogsms.map((ogsm) => (
-            <ProjectCard ogsm={ogsm} key={ogsm.id} />
+        <div className="">
+          <Separator orientation="vertical" />
+        </div>
+        <div className="">
+          <h2 className="mb-4 text-2xl font-semibold tracking-tight">
+            Actions
+          </h2>
+          <div className="flex pb-4">
+            <Select>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Most Recent" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="recent">Most Recent</SelectItem>
+                <SelectItem value="ogsm">By Ogsm</SelectItem>
+                <SelectItem value="priority">Priority</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {actions.map((action) => (
+            <ActionCard action={action} key={action.id} />
           ))}
         </div>
-      </div>
-      <div className="">
-        <Separator orientation="vertical" />
-      </div>
-      <div className="">
-        <h2 className="mb-4 text-2xl font-semibold tracking-tight">Actions</h2>
-        <div className="flex pb-4">
-          <Select>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Most Recent" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="recent">Most Recent</SelectItem>
-              <SelectItem value="ogsm">By Ogsm</SelectItem>
-              <SelectItem value="priority">Priority</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        {actions.map((action) => (
-          <ActionCard action={action} key={action.id} />
-        ))}
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
