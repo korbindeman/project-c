@@ -50,9 +50,9 @@ function ActionCard({ action }: ActionCard) {
             Created by Korbin de Man
           </p>
           <div className="mt-2 flex items-center gap-1">
-            <div className="text-xs text-neutral-500">Example Ogsm</div>
+            <div className="text-xs text-neutral-500">Municipality Ogsm</div>
             <div className="inline-block rounded-sm bg-green-100 px-1 py-0.5 text-xs text-green-800">
-              Finished
+              {action.status}
             </div>
           </div>
         </CardContent>
