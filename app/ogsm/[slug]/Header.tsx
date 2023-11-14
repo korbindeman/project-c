@@ -10,8 +10,8 @@ import {
   ArrowUpOnSquareIcon,
   EyeIcon,
   PencilSquareIcon,
-  StarIcon,
 } from "@heroicons/react/24/outline";
+import FavoriteButton from "./FavoriteButton";
 
 type Props = { title: string | undefined; creator: string | undefined };
 export default function Header({ title, creator }: Props) {
@@ -27,10 +27,7 @@ export default function Header({ title, creator }: Props) {
               </p>
             </div>
             <div className="flex gap-2 text-gray-800">
-              <Button className="flex items-center p-2" variant="outline">
-                <StarIcon className="h-5 w-5" />
-                {/* <div className="ml-1">Star</div> */}
-              </Button>
+              <FavoriteButton />
               <Button className="flex items-center p-2" variant="outline">
                 <ArrowUpOnSquareIcon className="h-5 w-5" />
                 {/* <div className="ml-1">Share</div> */}
