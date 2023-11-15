@@ -16,23 +16,21 @@ export default function FavoriteButton() {
       className={`flex items-center p-2 ${
         favoriteState
           ? ""
-          : "bg-amber-200 text-amber-600 transition hover:bg-amber-300 hover:text-amber-600"
+          : "border-amber-300 bg-amber-200 text-amber-600 transition hover:bg-amber-300 hover:text-amber-600"
       }`}
       variant="outline"
     >
       {favoriteState ? (
-        <StarIconOutline className="h-5 w-5" />
+        <>
+          <StarIconOutline className="h-5 w-5" />
+          <div className="ml-1 text-sm">Star</div>
+        </>
       ) : (
-        // {/* <div className="ml-1">Star</div> */}
-        <StarIconSolid className="h-5 w-5" />
+        <>
+          <StarIconSolid className="h-5 w-5" />
+          <div className="ml-1 text-sm">Star</div>
+        </>
       )}
     </Button>
   );
-}
-
-{
-  /* <Button className="flex items-center p-2" variant="outline">
-<StarIcon className="h-5 w-5" />
-<div className="ml-1">Star</div>
-</Button> */
 }

@@ -30,7 +30,7 @@ export default function Header({ title, creator }: Props) {
               <FavoriteButton />
               <Button className="flex items-center p-2" variant="outline">
                 <ArrowUpOnSquareIcon className="h-5 w-5" />
-                {/* <div className="ml-1">Share</div> */}
+                <div className="ml-1 text-sm">Share</div>
               </Button>
               <Select defaultValue="editing">
                 <SelectTrigger className="w-32">

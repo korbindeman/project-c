@@ -8,7 +8,6 @@ import {
 
 // import { Popover, Transition } from "@headlessui/react";
 import { ReactNode } from "react";
-import { Card } from "./ui/card";
 
 type Props = { button: ReactNode; children?: ReactNode };
 export default function Dropdown({ button, children }: Props) {
@@ -17,7 +16,9 @@ export default function Dropdown({ button, children }: Props) {
       <PopoverTrigger>{button}</PopoverTrigger>
 
       <PopoverContent className="">
-        <Card className="p-4">{children}</Card>
+        {/* <Card className="p-4"> */}
+        {children}
+        {/* </Card> */}
       </PopoverContent>
     </Popover>
   );
