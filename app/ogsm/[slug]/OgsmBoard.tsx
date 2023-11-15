@@ -28,10 +28,7 @@ export default function OgsmBoard({ ogsm }: Props) {
     <div className="grid grid-cols-5 gap-2">
       <Section title="Goal" className="col-span-5">
         <Card>
-          <RichTextField
-            content={ogsm?.objective}
-            className="max-w-full py-2"
-          />
+          <RichTextField content={ogsm?.objective} className="max-w-full p-2" />
         </Card>
       </Section>
       <Section title="Goals" className="">
@@ -57,7 +54,7 @@ export default function OgsmBoard({ ogsm }: Props) {
               className="grid grid-cols-4 border-b last:border-0"
               key={strategy.id}
             >
-              <div className="border-r">
+              <div className="border-r px-2 py-1">
                 <RichTextField content={strategy.content} />
               </div>
               <div className="border-r">
