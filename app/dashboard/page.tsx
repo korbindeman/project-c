@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -10,29 +8,9 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { prisma } from "@/lib/prisma";
-import { Action, Ogsm } from "@prisma/client";
+import { Action } from "@prisma/client";
 import Link from "next/link";
-
-interface ProjectCardProps {
-  ogsm: Ogsm;
-}
-function ProjectCard({ ogsm }: ProjectCardProps) {
-  return (
-    <Link href="/ogsm/1">
-      <Card>
-        <CardHeader>
-          <h3 className="text-sm tracking-tight">{ogsm.title}</h3>
-          <p className="text-xs text-muted-foreground">
-            Created by Korbin de Man
-          </p>
-        </CardHeader>
-        <CardContent>
-          <p className="text-xs text-muted-foreground">Modified 3 mins ago</p>
-        </CardContent>
-      </Card>
-    </Link>
-  );
-}
+import OgsmList from "./OgsmList";
 
 interface ActionCard {
   action: Action;
@@ -78,18 +56,7 @@ export default async function Dashboard() {
   return (
     <div className="container mx-auto py-8">
       <main className="flex items-stretch gap-8">
-        <div className="w-3/4">
-          <h2 className="mb-4 text-2xl font-semibold tracking-tight">Ogsms</h2>
-          <div className="flex justify-between pb-4">
-            <Input placeholder="Search ogsms" className="w-96" />
-            <Button>Create new</Button>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {ogsms.map((ogsm) => (
-              <ProjectCard ogsm={ogsm} key={ogsm.id} />
-            ))}
-          </div>
-        </div>
+        <OgsmList ogsms={ogsms} />
         <div className="">
           <Separator orientation="vertical" />
         </div>
