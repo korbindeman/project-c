@@ -15,7 +15,7 @@ export default function Dropdown({ button, children }: Props) {
     <Popover>
       <PopoverTrigger>{button}</PopoverTrigger>
 
-      <PopoverContent className="">
+      <PopoverContent className="mx-4">
         {/* <Card className="p-4"> */}
         {children}
         {/* </Card> */}
