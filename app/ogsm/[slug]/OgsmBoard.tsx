@@ -26,7 +26,7 @@ type Props = { ogsm: any };
 export default function OgsmBoard({ ogsm }: Props) {
   return (
     <div className="grid grid-cols-5 gap-2">
-      <Section title="Goal" className="col-span-5">
+      <Section title="Objective" className="col-span-5">
         <Card>
           <RichTextField content={ogsm?.objective} className="max-w-full p-2" />
         </Card>
