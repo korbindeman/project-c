@@ -5,7 +5,7 @@ import Underline from "@tiptap/extension-underline";
 import { BubbleMenu, EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { MouseEventHandler, ReactNode } from "react";
-import Card from "./Card";
+import { Card } from "./ui/card";
 
 // TODO: add collaborative editing
 
@@ -64,9 +64,9 @@ function Menu() {
 
   return (
     <BubbleMenu>
-      <Card noPadding>
+      <Card>
         <div className="p-1">
-          <div className="flex gap-1">
+          <div className="flex select-none gap-1">
             {buttons.map((buttonGroup) => (
               <>
                 {buttonGroup.map((button) => (
