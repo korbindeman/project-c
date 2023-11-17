@@ -9,6 +9,8 @@ type TooltipProps = {
   content: string;
 };
 
+// most part of this is floating-ui stuff, configuring how tooltip is positioned, how long it takes etc
+// tooltip content prop is what is actually showed in broswer
 export default function Tooltip({ children, content }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
 
