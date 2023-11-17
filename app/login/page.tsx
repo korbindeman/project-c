@@ -8,7 +8,7 @@ type Props = {};
 export default function page({}: Props) {
   return (
     <div className="grid place-content-center pt-16">
-      <Card className="p-8">
+      <Card className="w-96 p-8">
         <CardHeader>
           <CardTitle className="text-lg">Log in</CardTitle>
         </CardHeader>
