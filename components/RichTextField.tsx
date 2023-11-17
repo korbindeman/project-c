@@ -66,7 +66,7 @@ function Menu() {
     <BubbleMenu>
       <Card>
         <div className="p-1">
-          <div className="flex gap-1">
+          <div className="flex select-none gap-1">
             {buttons.map((buttonGroup) => (
               <>
                 {buttonGroup.map((button) => (
