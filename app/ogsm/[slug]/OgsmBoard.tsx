@@ -20,8 +20,6 @@ function Section({ title, children, className }: SectionProps) {
   );
 }
 
-// TODO: give this a better name
-
 type Props = { ogsm: any };
 export default function OgsmBoard({ ogsm }: Props) {
   return (
