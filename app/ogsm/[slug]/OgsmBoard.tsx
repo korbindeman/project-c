@@ -1,8 +1,8 @@
-import RichTextField from "@/components/RichTextField";
 import { Card } from "@/components/ui/card";
 import { Action, Dashboard, Goal } from "@prisma/client";
 import { ReactNode } from "react";
-import TextWrapper from "./TextWrapper";
+import TextField from "./TextField";
+import { TextFieldGroup } from "./TextFieldGroup";
 
 interface SectionProps {
   title: string | ReactNode;
@@ -25,15 +25,15 @@ export default function OgsmBoard({ ogsm }: Props) {
   return (
     <div className="grid grid-cols-5 gap-2">
       <Section title="Objective" className="col-span-5">
-        <Card>
-          <RichTextField content={ogsm?.objective} className="max-w-full p-2" />
+        <Card className="p-1">
+          <TextField content={ogsm?.objective} />
         </Card>
       </Section>
       <Section title="Goals" className="">
         <Card className="h-full">
-          <TextWrapper
-            initialContent={ogsm?.goals.map((goal: Goal) => goal.content)}
-          ></TextWrapper>
+          <TextFieldGroup
+            initialContent={ogsm.goals.map((goal: Goal) => goal.content)}
+          />
         </Card>
       </Section>
       <Section
@@ -53,21 +53,21 @@ export default function OgsmBoard({ ogsm }: Props) {
               key={strategy.id}
             >
               <div className="border-r px-2 py-1">
-                <RichTextField content={strategy.content} />
+                <TextField content={strategy.content} />
               </div>
               <div className="border-r">
-                <TextWrapper
+                <TextFieldGroup
                   initialContent={strategy.dashboard.map(
                     (dashboard: Dashboard) => dashboard.content,
                   )}
                 />
               </div>
               <div className="col-span-2">
-                <TextWrapper
+                <TextFieldGroup
                   initialContent={strategy.actions.map(
                     (action: Action) => action.content,
                   )}
-                ></TextWrapper>
+                ></TextFieldGroup>
               </div>
             </div>
           ))}
