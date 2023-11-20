@@ -16,7 +16,7 @@ export default function FavoriteButton() {
       className={`flex items-center p-2 ${
         favoriteState
           ? ""
-          : "border-amber-300 bg-amber-200 text-amber-600 transition hover:bg-amber-300 hover:text-amber-600"
+          : "border-amber-300 bg-amber-200 text-amber-600 shadow shadow-amber-400/10 transition hover:border-amber-400 hover:bg-amber-300 hover:text-amber-600 hover:shadow-lg hover:shadow-amber-400/30"
       }`}
       variant="outline"
     >
