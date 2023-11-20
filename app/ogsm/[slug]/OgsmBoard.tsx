@@ -52,7 +52,7 @@ export default function OgsmBoard({ ogsm }: Props) {
               className="grid grid-cols-4 border-b last:border-0"
               key={strategy.id}
             >
-              <div className="border-r px-2 py-1">
+              <div className="border-r p-1">
                 <TextField content={strategy.content} />
               </div>
               <div className="border-r">
