@@ -34,17 +34,17 @@ export default function Header({ title, creator }: Props) {
               </Button>
               <Select defaultValue="editing">
                 <SelectTrigger className="w-32">
-                  <SelectValue />
+                  <SelectValue className="select-none" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="editing">
-                    <div className="flex items-center">
+                    <div className="flex select-none items-center">
                       <PencilSquareIcon className="mr-2 h-5 w-5" />
                       Editing
                     </div>
                   </SelectItem>
                   <SelectItem value="viewing">
-                    <div className="flex items-center">
+                    <div className="flex select-none items-center">
                       <EyeIcon className="mr-2 h-5 w-5" />
                       Viewing
                     </div>
