@@ -3,11 +3,12 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import TextField from "./TextField";
+import { CountdownTimerIcon } from "@radix-ui/react-icons";
 
 const getRandomId = () => Math.random().toString(36);
 
 // TODO: Focus field if new field is made
-// TODO: If last field is empty, disallow new field creation
+
 type Props = {
   initialContent: string[];
 };
@@ -18,7 +19,11 @@ export const TextFieldGroup = ({
     initialContentList.map((content) => [content, getRandomId()]),
   );
   const handleFieldClick = () => {
-    setContentList([...contentList, ["", getRandomId()]]);
+    //If last field is empty, disallow new field creation
+    var lastElementLength = contentList[contentList.length -1][0] 
+    if (lastElementLength != "") {
+      setContentList([...contentList, ["", getRandomId()]]);
+    }
   };
   const deleteField = (deleteId: string) => {
     setContentList(contentList.filter(([_, id]) => deleteId != id));
