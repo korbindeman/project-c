@@ -18,13 +18,14 @@ export const TextFieldGroup = ({
   const [contentList, setContentList] = useState(
     initialContentList.map((content) => [content, getRandomId()]),
   );
-  const handleFieldClick = () => {
-    //If last field is empty, disallow new field creation
-    var lastElementLength = contentList[contentList.length - 1][0];
-    if (lastElementLength != "") {
-      setContentList([...contentList, ["", getRandomId()]]);
-    }
+
+  const createNewField = () => {
+    if (contentList[contentList.length - 1][0] == "") return; // If last field is empty, disallow new field creation
+
+    let newFieldId = getRandomId();
+    setContentList([...contentList, ["", newFieldId]]);
   };
+
   const deleteField = (deleteId: string) => {
     setContentList(contentList.filter(([_, id]) => deleteId != id));
   };
@@ -43,7 +44,7 @@ export const TextFieldGroup = ({
       ))}
       <div
         className="h-12 flex-grow cursor-text"
-        onClick={handleFieldClick}
+        onClick={createNewField}
       ></div>
     </div>
   );
