@@ -33,7 +33,7 @@ export default function Header({ title, creator }: Props) {
                 <div className="ml-1 text-sm">Share</div>
               </Button>
               <Select defaultValue="editing">
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-32 focus:ring-0">
                   <SelectValue className="select-none" />
                 </SelectTrigger>
                 <SelectContent>
