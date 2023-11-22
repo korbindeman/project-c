@@ -3,7 +3,6 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import TextField from "./TextField";
-import { CountdownTimerIcon } from "@radix-ui/react-icons";
 
 const getRandomId = () => Math.random().toString(36);
 
@@ -21,7 +20,7 @@ export const TextFieldGroup = ({
   );
   const handleFieldClick = () => {
     //If last field is empty, disallow new field creation
-    var lastElementLength = contentList[contentList.length -1][0] 
+    var lastElementLength = contentList[contentList.length - 1][0];
     if (lastElementLength != "") {
       setContentList([...contentList, ["", getRandomId()]]);
     }
@@ -39,7 +38,7 @@ export const TextFieldGroup = ({
           >
             <XMarkIcon className="h-4 w-4 text-gray-500" />
           </span>
-          <TextField content={content}/>
+          <TextField content={content} />
         </div>
       ))}
       <div
