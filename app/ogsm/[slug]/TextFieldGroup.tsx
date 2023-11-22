@@ -8,6 +8,7 @@ import { CountdownTimerIcon } from "@radix-ui/react-icons";
 const getRandomId = () => Math.random().toString(36);
 
 // TODO: Focus field if new field is made
+// TODO: fix content not being updated on change in TextFields
 
 type Props = {
   initialContent: string[];
@@ -38,7 +39,7 @@ export const TextFieldGroup = ({
           >
             <XMarkIcon className="h-4 w-4 text-gray-500" />
           </span>
-          <TextField content={content} />
+          <TextField content={content}/>
         </div>
       ))}
       <div
