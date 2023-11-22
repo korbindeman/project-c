@@ -6,11 +6,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import {
   ArrowUpOnSquareIcon,
   EyeIcon,
   PencilSquareIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 
 type Props = { title: string | undefined; creator: string | undefined };
@@ -21,6 +23,13 @@ export default function Header({ title, creator }: Props) {
         <div className="container mx-auto py-6">
           <div className="flex items-center justify-between">
             <div className="">
+              <Link
+                href="/dashboard"
+                className="flex items-center text-xs text-gray-500"
+              >
+                <ArrowLeftIcon className="h-4 w-4" />
+                Back
+              </Link>
               <h1 className="">{title}</h1>
               <p className="text-xs text-muted-foreground">
                 Created by {creator}
