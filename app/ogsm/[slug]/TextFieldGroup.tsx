@@ -30,12 +30,12 @@ export const TextFieldGroup = ({
     setContentList(contentList.filter(([_, id]) => deleteId != id));
   };
   return (
-    <div className="flex h-full flex-col space-y-1 px-2 py-1">
+    <div className="flex h-full flex-col space-y-1 p-1">
       {contentList.map(([content, id]) => (
         <div className="group relative" key={id}>
           <span
             onClick={() => deleteField(id)}
-            className="absolute right-0 top-0 z-10 hidden -translate-y-1/4 translate-x-1/4 cursor-pointer items-center justify-center rounded-full bg-gray-300 p-0.5 group-hover:block"
+            className="absolute right-0 top-0 z-10 hidden -translate-y-1/3 translate-x-1/3 cursor-pointer items-center justify-center rounded-full bg-gray-300 p-0.5 opacity-80 transition hover:opacity-100 group-hover:block"
           >
             <XMarkIcon className="h-4 w-4 text-gray-500" />
           </span>
