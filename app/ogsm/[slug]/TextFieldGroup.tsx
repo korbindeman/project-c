@@ -29,6 +29,7 @@ export const TextFieldGroup = ({
   const deleteField = (deleteId: string) => {
     setContentList(contentList.filter(([_, id]) => deleteId != id));
   };
+
   return (
     <div className="flex h-full flex-col space-y-1 p-1">
       {contentList.map(([content, id]) => (
