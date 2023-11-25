@@ -6,7 +6,7 @@ type Props = {
 };
 const TextField = ({ content }: Props) => {
   return (
-    <div className="rounded-md transition hover:bg-gray-100">
+    <div className="rounded-md transition hover:bg-gray-100 group-hover:bg-gray-100">
       <RichTextField content={content} className="max-w-full p-1" />
     </div>
   );
