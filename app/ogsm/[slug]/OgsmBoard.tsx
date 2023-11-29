@@ -1,6 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Action, Dashboard, Goal } from "@prisma/client";
 import { ReactNode, useState } from "react";
 import TextField from "./TextField";
@@ -85,21 +86,26 @@ export default function OgsmBoard({ ogsm }: Props) {
                   )}
                 ></TextFieldGroup>
               </div>
-              <div
-                className="absolute -right-8 top-1/2 hidden bg-red-200 group-hover/strategy:block"
-                onClick={() => deleteStrategy(strategy.id)}
-              >
-                remove
+              <div className="absolute -right-12 top-1/2 hidden pl-5 group-hover/strategy:block">
+                <div
+                  className="cursor-pointer rounded-full bg-red-200 p-2 transition hover:bg-red-300"
+                  onClick={() => deleteStrategy(strategy.id)}
+                >
+                  <XMarkIcon className="h-6 w-6 text-red-500" />
+                </div>
               </div>
             </div>
           ))}
         </Card>
-        <div
-          className="mt-2 rounded bg-sky-100 p-4"
+        <Card
+          className="mt-2 cursor-pointer p-4 transition hover:bg-gray-100"
           onClick={createNewStrategy}
         >
-          Add strategy
-        </div>
+          <span className="flex items-center">
+            <PlusCircleIcon className="mr-2 h-5 w-5" />
+            Add strategy
+          </span>
+        </Card>
       </Section>
       <div className="col-span-4"></div>
     </div>
