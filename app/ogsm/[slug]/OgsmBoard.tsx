@@ -1,8 +1,12 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
+import { PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Action, Dashboard, Goal } from "@prisma/client";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import TextField from "./TextField";
 import { TextFieldGroup } from "./TextFieldGroup";
+import { OgsmWithIncludes } from "./state";
 
 interface SectionProps {
   title: string | ReactNode;
@@ -20,13 +24,33 @@ function Section({ title, children, className }: SectionProps) {
   );
 }
 
-type Props = { ogsm: any };
+type Props = { ogsm: OgsmWithIncludes };
 export default function OgsmBoard({ ogsm }: Props) {
+  const [strategies, setStrategies] = useState(ogsm?.strategies);
+
+  const createNewStrategy = () => {
+    setStrategies([
+      ...strategies,
+      { content: "", ogsmId: ogsm.id, dashboard: [], actions: [], id: 999 }, // TODO: temporary untill uniqid
+    ]);
+  };
+
+  const deleteStrategy = (deleteId: number) => {
+    setStrategies(strategies.filter((strategy) => deleteId != strategy.id));
+  };
+
   return (
     <div className="grid grid-cols-5 gap-2">
       <Section title="Objective" className="col-span-5">
         <Card className="p-1">
-          <TextField content={ogsm?.objective} />
+          <TextField
+            content={ogsm?.objective}
+            updateField={() => {
+              return;
+            }}
+            id={"999"}
+            // TODO: temporary
+          />
         </Card>
       </Section>
       <Section title="Goals" className="">
@@ -47,13 +71,20 @@ export default function OgsmBoard({ ogsm }: Props) {
         className="col-span-4"
       >
         <Card>
-          {ogsm?.strategies.map((strategy: any) => (
+          {strategies.map((strategy: any) => (
             <div
-              className="grid grid-cols-4 border-b last:border-0"
+              className="group/strategy relative grid grid-cols-4 border-b last:border-0"
               key={strategy.id}
             >
               <div className="border-r p-1">
-                <TextField content={strategy.content} />
+                <TextField
+                  content={strategy.content}
+                  updateField={() => {
+                    return;
+                  }}
+                  id={"999"}
+                  // TODO: temporary
+                />
               </div>
               <div className="border-r">
                 <TextFieldGroup
@@ -69,8 +100,25 @@ export default function OgsmBoard({ ogsm }: Props) {
                   )}
                 ></TextFieldGroup>
               </div>
+              <div className="absolute -right-12 top-1/2 hidden pl-5 group-hover/strategy:block">
+                <div
+                  className="cursor-pointer rounded-full bg-red-200 p-2 transition hover:bg-red-300"
+                  onClick={() => deleteStrategy(strategy.id)}
+                >
+                  <XMarkIcon className="h-6 w-6 text-red-500" />
+                </div>
+              </div>
             </div>
           ))}
+        </Card>
+        <Card
+          className="mt-2 cursor-pointer p-4 transition hover:bg-gray-100"
+          onClick={createNewStrategy}
+        >
+          <span className="flex items-center">
+            <PlusCircleIcon className="mr-2 h-5 w-5" />
+            Add strategy
+          </span>
         </Card>
       </Section>
       <div className="col-span-4"></div>
