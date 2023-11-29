@@ -28,8 +28,17 @@ export const TextFieldGroup = ({
     setContentList([...contentList, ["", newFieldId]]);
   };
 
-  const deleteField = (deleteId: string) => {
-    setContentList(contentList.filter(([_, id]) => deleteId != id));
+  const deleteField = (fieldId: string) => {
+    setContentList(contentList.filter(([_, id]) => fieldId != id));
+  };
+
+  const updateField = (newContent: string, fieldId: string) => {
+    setContentList(
+      contentList.map(([content, id]) => {
+        if (fieldId === id) return [newContent, id];
+        return [content, id];
+      }),
+    );
   };
 
   return (
@@ -42,7 +51,7 @@ export const TextFieldGroup = ({
           >
             <XMarkIcon className="h-4 w-4 text-gray-500" />
           </span>
-          <TextField content={content} />
+          <TextField content={content} updateField={updateField} id={id} />
         </div>
       ))}
       <div

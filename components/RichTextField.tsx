@@ -90,10 +90,12 @@ function Menu() {
 interface RichTextFieldProps {
   content?: string;
   className?: string;
+  updateContent: (content: string) => void;
 }
 export default function RichTextField({
   content,
   className,
+  updateContent,
 }: RichTextFieldProps) {
   return (
     <EditorProvider
@@ -103,6 +105,10 @@ export default function RichTextField({
         attributes: {
           class: "prose prose-sm outline-none " + className,
         },
+      }}
+      onUpdate={({ editor }) => {
+        const content = editor.getText();
+        updateContent(content);
       }}
     >
       <Menu />
