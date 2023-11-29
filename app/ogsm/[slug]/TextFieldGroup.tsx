@@ -20,7 +20,9 @@ export const TextFieldGroup = ({
   );
 
   const createNewField = () => {
-    if (contentList[contentList.length - 1][0] == "") return; // If last field is empty, disallow new field creation
+    try {
+      if (contentList[contentList.length - 1][0] == "") return; // If last field is empty, disallow new field creation
+    } catch (error) {}
 
     let newFieldId = getRandomId();
     setContentList([...contentList, ["", newFieldId]]);

@@ -1,8 +1,11 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Action, Dashboard, Goal } from "@prisma/client";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import TextField from "./TextField";
 import { TextFieldGroup } from "./TextFieldGroup";
+import { OgsmWithIncludes } from "./state";
 
 interface SectionProps {
   title: string | ReactNode;
@@ -20,8 +23,21 @@ function Section({ title, children, className }: SectionProps) {
   );
 }
 
-type Props = { ogsm: any };
+type Props = { ogsm: OgsmWithIncludes };
 export default function OgsmBoard({ ogsm }: Props) {
+  const [strategies, setStrategies] = useState(ogsm?.strategies);
+
+  const createNewStrategy = () => {
+    setStrategies([
+      ...strategies,
+      { content: "", ogsmId: ogsm.id, dashboard: [], actions: [], id: 999 },
+    ]);
+  };
+
+  const deleteStrategy = (deleteId: number) => {
+    setStrategies(strategies.filter((strategy) => deleteId != strategy.id));
+  };
+
   return (
     <div className="grid grid-cols-5 gap-2">
       <Section title="Objective" className="col-span-5">
@@ -47,9 +63,9 @@ export default function OgsmBoard({ ogsm }: Props) {
         className="col-span-4"
       >
         <Card>
-          {ogsm?.strategies.map((strategy: any) => (
+          {strategies.map((strategy: any) => (
             <div
-              className="grid grid-cols-4 border-b last:border-0"
+              className="group/strategy relative grid grid-cols-4 border-b last:border-0"
               key={strategy.id}
             >
               <div className="border-r p-1">
@@ -69,9 +85,21 @@ export default function OgsmBoard({ ogsm }: Props) {
                   )}
                 ></TextFieldGroup>
               </div>
+              <div
+                className="absolute -right-8 top-1/2 hidden bg-red-200 group-hover/strategy:block"
+                onClick={() => deleteStrategy(strategy.id)}
+              >
+                remove
+              </div>
             </div>
           ))}
         </Card>
+        <div
+          className="mt-2 rounded bg-sky-100 p-4"
+          onClick={createNewStrategy}
+        >
+          Add strategy
+        </div>
       </Section>
       <div className="col-span-4"></div>
     </div>
