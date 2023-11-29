@@ -31,7 +31,7 @@ export default function OgsmBoard({ ogsm }: Props) {
   const createNewStrategy = () => {
     setStrategies([
       ...strategies,
-      { content: "", ogsmId: ogsm.id, dashboard: [], actions: [], id: 999 },
+      { content: "", ogsmId: ogsm.id, dashboard: [], actions: [], id: 999 }, // TODO: temporary untill uniqid
     ]);
   };
 
@@ -43,7 +43,14 @@ export default function OgsmBoard({ ogsm }: Props) {
     <div className="grid grid-cols-5 gap-2">
       <Section title="Objective" className="col-span-5">
         <Card className="p-1">
-          <TextField content={ogsm?.objective} />
+          <TextField
+            content={ogsm?.objective}
+            updateField={() => {
+              return;
+            }}
+            id={"999"}
+            // TODO: temporary
+          />
         </Card>
       </Section>
       <Section title="Goals" className="">
@@ -70,7 +77,14 @@ export default function OgsmBoard({ ogsm }: Props) {
               key={strategy.id}
             >
               <div className="border-r p-1">
-                <TextField content={strategy.content} />
+                <TextField
+                  content={strategy.content}
+                  updateField={() => {
+                    return;
+                  }}
+                  id={"999"}
+                  // TODO: temporary
+                />
               </div>
               <div className="border-r">
                 <TextFieldGroup
