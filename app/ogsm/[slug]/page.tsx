@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Header from "./Header";
 import OgsmBoard from "./OgsmBoard";
 
-async function getOgsm(slug: string) {
+export async function getOgsm(slug: string) {
   const allOgsm = await prisma.ogsm.findUnique({
     where: {
       slug: slug,
