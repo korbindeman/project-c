@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Ogsm } from "@prisma/client";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic"; // defaults to force-static
@@ -31,25 +32,18 @@ export async function GET(request: NextRequest) {
   return Response.json({ ogsmContent });
 }
 
-// export async function PUT(request: NextRequest, ogsm: Ogsm) {
-//   const test_ogsm = await getOgsm("1");
-
-//   const updatedPost = await prisma.ogsm.update({
-//     where: { id: test_ogsm?.id },
-//     data: { goals :{
-//       test_ogsm.goals
-//     }},
-//     include: {
-//       goals: {},
-//       strategies: {
-//         include: {
-//           dashboard: {},
-//           actions: {
-//             orderBy: { id: "asc" },
-//           },
-//         },
-//       },
-//     },
-//   });
-//   return Response.json({ test: 1 });
-// }
+export async function PUT(request: NextRequest) {
+  const updatedOgsm: Ogsm[] = await request.json();
+  updatedOgsm.forEach(async (ogsm: Ogsm) => {
+    await prisma.ogsm.update({
+      where: {
+        slug: ogsm.slug,
+      },
+      data: {
+        title: ogsm.title,
+        objective: ogsm.objective
+      },
+    });
+    return Response.json({ updatedOgsm });
+  })
+}
