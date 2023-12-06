@@ -26,7 +26,6 @@ export const TextFieldGroup = ({
 
     let newFieldId = getRandomId();
     setContentList([...contentList, ["", newFieldId]]);
-    //.focus on newly created input field. Retreive field trough newFieldId?
   };
 
   const deleteField = (fieldId: string) => {
