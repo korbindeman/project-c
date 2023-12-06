@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Ogsm } from "@prisma/client";
 import { NextRequest } from "next/server";
+import slugify from "slugify";
 
 export const dynamic = "force-dynamic"; // defaults to force-static
 // get full ogsm from prisma
@@ -46,4 +47,21 @@ export async function PUT(request: NextRequest) {
     });
     return Response.json({ updatedOgsm });
   })
+}
+
+export async function POST(request: NextRequest)
+{
+  const {title, objective} =  await request.json();
+  const userId = 1;
+  const slug = slugify(title);
+  const newOgsm = await prisma.ogsm.create({
+    include:{},
+    data: {
+      title,
+      objective,
+      userId,
+      slug,
+    },  
+  })
+  return Response.json(newOgsm);
 }

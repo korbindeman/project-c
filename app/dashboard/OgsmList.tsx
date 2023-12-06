@@ -32,15 +32,28 @@ type Props = { ogsms: any };
 export default function OgsmList({ ogsms }: Props) {
   const [ogsmList, setOgsmList] = useState(ogsms);
 
-  const demoOgsm = () => {
-    setOgsmList([...ogsmList, { title: "New ogsm", slug: "1" }]);
+  const ogsmJson = 
+  {
+  "title": "Test dashboard refresh",
+  "objective": "Test the auto-refresh of the dashboard"
+  };
+  
+  const newOgsm = async () => {
+    const res = await fetch("/api/ogsm", {
+      method: "POST",
+      body: JSON.stringify(ogsmJson), 
+      headers: {
+        'content-type': 'application/json',
+      }
+    });
+    setOgsmList([...ogsmList, res.body])
   };
   return (
     <div className="w-3/4">
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Ogsms</h2>
       <div className="flex justify-between pb-4">
         <Input placeholder="Search ogsms" className="w-96" />
-        <Button onClick={demoOgsm}>Create new</Button>
+        <Button onClick={newOgsm}>Create new</Button>
       </div>
       <div className="grid grid-cols-2 gap-4">
         {ogsmList.map((ogsm: any) => (
