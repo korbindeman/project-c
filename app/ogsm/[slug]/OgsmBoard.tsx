@@ -100,7 +100,7 @@ export default function OgsmBoard({ ogsm }: Props) {
                   )}
                 ></TextFieldGroup>
               </div>
-              <div className="absolute -right-12 top-1/2 hidden pl-5 group-hover/strategy:block">
+              <div className="absolute -right-16 top-1/2 hidden -translate-y-1/2 p-4 group-hover/strategy:block">
                 <div
                   className="cursor-pointer rounded-full bg-red-200 p-2 transition hover:bg-red-300"
                   onClick={() => deleteStrategy(strategy.id)}
@@ -115,7 +115,7 @@ export default function OgsmBoard({ ogsm }: Props) {
           className="mt-2 cursor-pointer p-4 transition hover:bg-gray-100"
           onClick={createNewStrategy}
         >
-          <span className="flex items-center">
+          <span className="flex items-center text-sm text-muted-foreground">
             <PlusCircleIcon className="mr-2 h-5 w-5" />
             Add strategy
           </span>
