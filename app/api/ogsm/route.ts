@@ -42,26 +42,25 @@ export async function PUT(request: NextRequest) {
       },
       data: {
         title: ogsm.title,
-        objective: ogsm.objective
+        objective: ogsm.objective,
       },
     });
     return Response.json({ updatedOgsm });
-  })
+  });
 }
 
-export async function POST(request: NextRequest)
-{
-  const {title, objective} =  await request.json();
+export async function POST(request: NextRequest) {
+  const { title, objective } = await request.json();
   const userId = 1;
-  const slug = slugify(title);
+  const slug = slugify(`${title}-${Math.floor(Math.random() * 100)}`);
   const newOgsm = await prisma.ogsm.create({
-    include:{},
+    include: {},
     data: {
       title,
       objective,
       userId,
       slug,
-    },  
-  })
+    },
+  });
   return Response.json(newOgsm);
 }
