@@ -1,6 +1,6 @@
 "use client";
 
-import { XMarkIcon } from "@heroicons/react/20/solid";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import TextField from "./TextField";
 
@@ -52,9 +52,13 @@ export const TextFieldGroup = ({
         </div>
       ))}
       <div
-        className="h-12 flex-grow cursor-text"
+        className="flex h-12 flex-grow cursor-text flex-col justify-end"
         onClick={createNewField}
-      ></div>
+      >
+        {/* <div className="cursor-pointer text-muted-foreground">
+          <PlusCircleIcon className="m-1 h-6 w-6" />
+        </div> */}
+      </div>
     </div>
   );
 };
