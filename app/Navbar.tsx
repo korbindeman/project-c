@@ -1,20 +1,24 @@
 import { Input } from "@/components/ui/input";
+import hrLogo from "@/public/hr-logo.svg";
 import {
   BellIcon,
   Cog6ToothIcon,
   UserCircleIcon,
+  ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import Notifications from "./Notifications";
+import Image from "next/image";
+
+import { FigmaLogoIcon } from "@radix-ui/react-icons";
+
 
 export default function Navbar() {
   return (
     <nav className="border-b p-3">
       <div className="flex items-center justify-between">
-        <div className="w-1/3"></div>
-        <div className="w-1/3">
-          <Input type="text" className="shadow-none" placeholder="Search..." />
-        </div>
+        <div className="w-1/3"><Image className="h-16 w-16" src={hrLogo} alt="Hogeschool logo"/></div>
+          
         <div className="w-1/3">
           <ul className="flex justify-end gap-2">
             <div className="">
@@ -32,6 +36,12 @@ export default function Navbar() {
                 <UserCircleIcon className="h-5 w-5 text-neutral-500" />
               </li>
             </Link>
+            <Link href={"/api/auth/signout"}>
+              <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
+                <ArrowLeftOnRectangleIcon className="h-5 w-5 text-neutral-500" />
+              </li>
+            </Link>
+            
           </ul>
         </div>
       </div>
