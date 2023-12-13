@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Ogsm } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
+import DialogDemo from "./CreatePopUp"
 
 interface ProjectCardProps {
   ogsm: Ogsm;
@@ -54,6 +55,7 @@ export default function OgsmList({ ogsms }: Props) {
       <div className="flex justify-between pb-4">
         <Input placeholder="Search ogsms" className="w-96" />
         <Button onClick={newOgsm}>Create new</Button>
+        <DialogDemo/> {/*new create OGSM button with UI popup*/}
       </div>
       <div className="grid grid-cols-2 gap-4">
         {ogsmList.map((ogsm: any) => (
