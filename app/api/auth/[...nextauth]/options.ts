@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
           // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
           // You can also use the `req` object to obtain additional parameters
           // (i.e., the request IP address)
-          const hardcoded = {id: '1', name: "johannesdoe", password: "shittypassword" }
+          const hardcoded = {id: '1', name: "admin", password: "admin" }
 
         if (credentials?.username === hardcoded.name && credentials?.password === hardcoded.password){
             return hardcoded;
