@@ -17,8 +17,10 @@ export default function Navbar() {
   return (
     <nav className="border-b p-3">
       <div className="flex items-center justify-between">
-        <div className="w-1/3"><Image className="h-16 w-16" src={hrLogo} alt="Hogeschool logo"/></div>
-          
+        <div className="w-1/3"><Link href={"/dashboard"}>
+          <Image className="h-12 w-12" src={hrLogo} alt="Hogeschool logo" />
+        </Link>
+        </div>
         <div className="w-1/3">
           <ul className="flex justify-end gap-2">
             <div className="">
@@ -31,17 +33,13 @@ export default function Navbar() {
                 <BellIcon className="h-5 w-5 text-neutral-500" />
               </li>
             </Notifications>
-            <Link href={"/dashboard"}>
-              <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
-                <UserCircleIcon className="h-5 w-5 text-neutral-500" />
-              </li>
-            </Link>
+
             <Link href={"/api/auth/signout"}>
               <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
                 <ArrowLeftOnRectangleIcon className="h-5 w-5 text-neutral-500" />
               </li>
             </Link>
-            
+
           </ul>
         </div>
       </div>
