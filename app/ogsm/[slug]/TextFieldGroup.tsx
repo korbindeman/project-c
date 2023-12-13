@@ -18,8 +18,14 @@ export const TextFieldGroup = ({
 
   const createNewField = () => {
     try {
-      if (contentList[contentList.length - 1][0] == "") return; // If last field is empty, disallow new field creation
-    } catch (error) {}
+      for (let i = 0; i < contentList.length; i++) { //if any field is empty, disallow new field creation
+        if (contentList[i][0] == "") return;
+      }
+    } catch (error) {
+      console.log("Error while trying to loop trough contentlist");
+      console.log(error);
+      return;
+    }
 
     let newFieldId = getRandomId();
     setContentList([...contentList, ["", newFieldId]]);
