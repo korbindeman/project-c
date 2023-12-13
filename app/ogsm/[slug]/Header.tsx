@@ -20,13 +20,13 @@ type Props = { title: string | undefined; creator: string | undefined };
 export default function Header({ title, creator }: Props) {
   return (
     <div>
-      <header className="border-b">
-        <div className="container mx-auto py-6">
+      <header className="">
+        <div className="container mx-auto pt-6">
           <div className="flex items-center justify-between">
             <div className="">
               <Link
                 href="/dashboard"
-                className="flex items-center text-xs text-gray-500"
+                className="flex items-center text-xs text-gray-500 mb-1"
               >
                 <ArrowLeftIcon className="h-4 w-4" />
                 Back

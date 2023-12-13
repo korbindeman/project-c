@@ -62,7 +62,7 @@ export default async function Dashboard() {
         </div>
         <div className="">
           <h2 className="mb-4 text-2xl font-semibold tracking-tight">
-            Actions
+            Your Actions
           </h2>
           <div className="flex pb-4">
             <Select>

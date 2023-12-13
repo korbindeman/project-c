@@ -33,16 +33,16 @@ type Props = { ogsms: any };
 export default function OgsmList({ ogsms }: Props) {
   const [ogsmList, setOgsmList] = useState(ogsms);
 
-  const ogsmJson = 
+  const ogsmJson =
   {
-  "title": "Test dashboard refresh",
-  "objective": "Test the auto-refresh of the dashboard"
+    "title": "Test dashboard refresh",
+    "objective": "Test the auto-refresh of the dashboard"
   };
-  
+
   const newOgsm = async () => {
     const res = await fetch("/api/ogsm", {
       method: "POST",
-      body: JSON.stringify(ogsmJson), 
+      body: JSON.stringify(ogsmJson),
       headers: {
         'content-type': 'application/json',
       }
@@ -51,7 +51,7 @@ export default function OgsmList({ ogsms }: Props) {
   };
   return (
     <div className="w-3/4">
-      <h2 className="mb-4 text-2xl font-semibold tracking-tight">Ogsms</h2>
+      <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
       <div className="flex justify-between pb-4">
         <Input placeholder="Search ogsms" className="w-96" />
         <Button onClick={newOgsm}>Create new</Button>
