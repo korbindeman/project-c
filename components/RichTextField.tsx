@@ -104,10 +104,10 @@ export default function RichTextField({
       editorProps={{
         attributes: {
           class: "prose prose-sm outline-none " + className,
-        }
+        },
       }}
       onCreate={({ editor }) => {
-        editor.commands.focus()
+        editor.commands.focus();
       }}
       onUpdate={({ editor }) => {
         const content = editor.getText();
