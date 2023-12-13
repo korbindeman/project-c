@@ -8,11 +8,12 @@ import {
 } from "@/components/ui/select";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import {
-  ArrowUpOnSquareIcon,
   EyeIcon,
+  LinkIcon,
   PencilSquareIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import CopyUrl from "./CopyUrl";
 import FavoriteButton from "./FavoriteButton";
 
 type Props = { title: string | undefined; creator: string | undefined };
@@ -37,10 +38,12 @@ export default function Header({ title, creator }: Props) {
             </div>
             <div className="flex gap-2 text-gray-600">
               <FavoriteButton />
-              <Button className="flex items-center p-2" variant="outline">
-                <ArrowUpOnSquareIcon className="h-5 w-5" />
-                <div className="ml-1 text-sm">Share</div>
-              </Button>
+              <CopyUrl>
+                <Button className="flex items-center p-2" variant="outline">
+                  <LinkIcon className="h-5 w-5" />
+                  <div className="ml-1 text-sm">Share</div>
+                </Button>
+              </CopyUrl>
               <Select defaultValue="editing">
                 <SelectTrigger className="w-32 focus:ring-0">
                   <SelectValue className="select-none" />
