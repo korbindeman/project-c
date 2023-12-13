@@ -6,9 +6,6 @@ import TextField from "./TextField";
 
 const getRandomId = () => Math.random().toString(36);
 
-// TODO: Focus field if new field is made
-// TODO: fix content not being updated on change in TextFields
-
 type Props = {
   initialContent: string[];
 };
