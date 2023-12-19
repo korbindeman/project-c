@@ -1,25 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import Header from "./Header";
 import OgsmBoard from "./OgsmBoard";
+import { ogsmContext } from "./ogsmContext";
 
 async function getOgsm(slug: string) {
-  const allOgsm = await prisma.ogsm.findUnique({
+  const allOgsm = await prisma.ogsm.findUniqueOrThrow({
     where: {
       slug: slug,
     },
     include: {
       creator: true,
-      goals: {
-        orderBy: { id: "asc" },
-      },
+      goals: true,
       strategies: {
         include: {
-          dashboard: {
-            orderBy: { id: "asc" },
-          },
-          actions: {
-            orderBy: { id: "asc" },
-          },
+          dashboard: true,
+          actions: true,
         },
       },
     },
@@ -35,7 +30,9 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
     <div className="">
       <Header title={ogsm?.title} creator={ogsm?.creator.name} />
       <main className="container mx-auto py-6">
-        <OgsmBoard ogsm={ogsm} />
+        <ogsmContext.Provider value={ogsm}>
+          <OgsmBoard />
+        </ogsmContext.Provider>
       </main>
     </div>
   );

@@ -6,7 +6,7 @@ import { Action, Dashboard, Goal } from "@prisma/client";
 import { ReactNode, useState } from "react";
 import TextField from "./TextField";
 import { TextFieldGroup } from "./TextFieldGroup";
-import { OgsmWithIncludes } from "./state";
+import { useOgsmContext } from "./ogsmContext";
 
 interface SectionProps {
   title: string | ReactNode;
@@ -24,8 +24,8 @@ function Section({ title, children, className }: SectionProps) {
   );
 }
 
-type Props = { ogsm: OgsmWithIncludes };
-export default function OgsmBoard({ ogsm }: Props) {
+export default function OgsmBoard() {
+  const ogsm = useOgsmContext();
   const [strategies, setStrategies] = useState(ogsm?.strategies);
 
   const createNewStrategy = () => {
