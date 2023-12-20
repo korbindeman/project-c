@@ -50,6 +50,12 @@ export default async function Dashboard() {
     redirect("/api/auth/signin");
   }
 
+  const user = await prisma.user.findFirst({
+    where: {
+      email: session.user?.email!,
+    },
+  });
+
   const ogsms = await prisma.ogsm.findMany({
     include: {
       creator: true,
@@ -59,7 +65,7 @@ export default async function Dashboard() {
   return (
     <div className="container mx-auto py-8">
       <main className="flex items-stretch gap-8">
-        <OgsmList ogsms={ogsms} />
+        <OgsmList ogsms={ogsms} user={user!} />
         {/* <div className="">
           <Separator orientation="vertical" />
         </div> */}

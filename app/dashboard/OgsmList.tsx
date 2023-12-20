@@ -4,6 +4,7 @@ import { ConfirmDelete } from "@/components/ConfirmDelete";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
 import { OgsmWithIncludes } from "../ogsm/[slug]/state";
@@ -39,15 +40,16 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
           </CardHeader>
           <CardContent>
             <p className="text-xs text-muted-foreground">Modified 3 mins ago</p>
-          </CardContent> {/*if made functional, save a Date() object to a property of ogsm, update this to the time of the last edit and then display the time that has passed since then above*/}
+          </CardContent>{" "}
+          {/*if made functional, save a Date() object to a property of ogsm, update this to the time of the last edit and then display the time that has passed since then above*/}
         </Card>
       </Link>
     </div>
   );
 }
 
-type Props = { ogsms: any };
-export default function OgsmList({ ogsms }: Props) {
+type Props = { ogsms: any; user: User };
+export default function OgsmList({ ogsms, user }: Props) {
   const [ogsmList, setOgsmList] = useState(ogsms);
   const [searchQuery, setSearchQuery] = useState("");
   function handleSearch(value: string) {
@@ -61,6 +63,7 @@ export default function OgsmList({ ogsms }: Props) {
       body: JSON.stringify({
         title: title,
         objective: "",
+        userId: user.id,
       }),
       headers: {
         "content-type": "application/json",
