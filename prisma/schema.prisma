@@ -14,7 +14,7 @@ datasource db {
 model Ogsm {
   id         Int        @id @default(autoincrement())
   slug       String     @unique
-  creator    User       @relation(fields: [userId], references: [id])
+  creator    User       @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   title      String
   objective  String
   goals      Goal[]
@@ -24,14 +24,14 @@ model Ogsm {
 
 model Goal {
   id      Int    @id @default(autoincrement())
-  ogsm    Ogsm   @relation(fields: [ogsmId], references: [id])
+  ogsm    Ogsm   @relation(fields: [ogsmId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   content String
   ogsmId  Int
 }
 
 model Strategy {
   id        Int         @id @default(autoincrement())
-  ogsm      Ogsm        @relation(fields: [ogsmId], references: [id])
+  ogsm      Ogsm        @relation(fields: [ogsmId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   content   String
   dashboard Dashboard[]
   actions   Action[]
@@ -40,14 +40,14 @@ model Strategy {
 
 model Dashboard {
   id         Int      @id @default(autoincrement())
-  strategy   Strategy @relation(fields: [strategyId], references: [id])
+  strategy   Strategy @relation(fields: [strategyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   content    String
   strategyId Int
 }
 
 model Action {
   id         Int      @id @default(autoincrement())
-  strategy   Strategy @relation(fields: [strategyId], references: [id])
+  strategy   Strategy @relation(fields: [strategyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   content    String
   status     String
   strategyId Int
