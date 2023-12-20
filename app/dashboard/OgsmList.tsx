@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Ogsm } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
-import DialogDemo from "./CreatePopUp"
+import DialogDemo from "./CreatePopUp";
 
 interface ProjectCardProps {
   ogsm: Ogsm;
@@ -33,10 +33,9 @@ type Props = { ogsms: any };
 export default function OgsmList({ ogsms }: Props) {
   const [ogsmList, setOgsmList] = useState(ogsms);
 
-  const ogsmJson =
-  {
-    "title": "Test dashboard refresh",
-    "objective": "Test the auto-refresh of the dashboard"
+  const ogsmJson = {
+    title: "Test dashboard refresh",
+    objective: "Test the auto-refresh of the dashboard",
   };
 
   const newOgsm = async () => {
@@ -44,20 +43,20 @@ export default function OgsmList({ ogsms }: Props) {
       method: "POST",
       body: JSON.stringify(ogsmJson),
       headers: {
-        'content-type': 'application/json',
-      }
+        "content-type": "application/json",
+      },
     });
-    setOgsmList([...ogsmList, res.body])
+    setOgsmList([...ogsmList, res.body]);
   };
   return (
-    <div className="w-3/4">
+    <div className="w-full">
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
       <div className="flex justify-between pb-4">
         <Input placeholder="Search ogsms" className="w-96" />
         <Button onClick={newOgsm}>Create new</Button>
-        <DialogDemo/> {/*new create OGSM button with UI popup*/}
+        <DialogDemo /> {/*new create OGSM button with UI popup*/}
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {ogsmList.map((ogsm: any) => (
           <ProjectCard ogsm={ogsm} key={ogsm.id} />
         ))}
