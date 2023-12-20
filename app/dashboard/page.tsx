@@ -1,12 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { prisma } from "@/lib/prisma";
 import { Action } from "@prisma/client";
 import { getServerSession } from "next-auth";
@@ -65,10 +57,10 @@ export default async function Dashboard() {
     <div className="container mx-auto py-8">
       <main className="flex items-stretch gap-8">
         <OgsmList ogsms={ogsms} />
-        <div className="">
+        {/* <div className="">
           <Separator orientation="vertical" />
-        </div>
-        <div className="">
+        </div> */}
+        {/* <div className="">
           <h2 className="mb-4 text-2xl font-semibold tracking-tight">
             Your Actions
           </h2>
@@ -87,7 +79,7 @@ export default async function Dashboard() {
           {actions.map((action) => (
             <ActionCard action={action} key={action.id} />
           ))}
-        </div>
+        </div> */}
       </main>
     </div>
   );
