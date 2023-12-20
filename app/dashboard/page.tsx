@@ -9,7 +9,9 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { prisma } from "@/lib/prisma";
 import { Action } from "@prisma/client";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import OgsmList from "./OgsmList";
 
 interface ActionCard {
@@ -50,6 +52,12 @@ async function getActions() {
 }
 
 export default async function Dashboard() {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   const ogsms = await getOgsms();
   const actions = await getActions();
 

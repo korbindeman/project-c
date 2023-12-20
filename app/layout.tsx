@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import AuthProvider from "./AuthProvider";
 import Navbar from "./Navbar";
 import "./globals.css";
 
@@ -16,19 +17,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className + " font-medium antialiased"}>
-        {/* <ThemeProvider
+    <AuthProvider>
+      <html lang="en">
+        <body className={inter.className + " font-medium antialiased"}>
+          {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         > */}
-        <Navbar />
-        {children}
-        <Toaster />
-        {/* </ThemeProvider> */}
-      </body>
-    </html>
+          <Navbar />
+          {children}
+          <Toaster />
+          {/* </ThemeProvider> */}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

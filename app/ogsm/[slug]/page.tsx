@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import Header from "./Header";
 import OgsmBoard from "./OgsmBoard";
 
@@ -29,6 +31,12 @@ async function getOgsm(slug: string) {
 }
 
 export default async function Ogsm({ params }: { params: { slug: string } }) {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
   const ogsm = await getOgsm(params.slug);
 
   return (
