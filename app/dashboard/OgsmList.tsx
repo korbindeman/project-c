@@ -3,13 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Ogsm } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
+import { OgsmWithIncludes } from "../ogsm/[slug]/state";
 import DialogDemo from "./CreatePopUp";
 
 interface ProjectCardProps {
-  ogsm: Ogsm;
+  ogsm: OgsmWithIncludes;
 }
 function ProjectCard({ ogsm }: ProjectCardProps) {
   return (
@@ -18,7 +18,7 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
         <CardHeader>
           <h3 className="text-sm tracking-tight">{ogsm.title}</h3>
           <p className="text-xs text-muted-foreground">
-            Created by Korbin de Man
+            Created by {ogsm.creator.name}
           </p>
         </CardHeader>
         <CardContent>

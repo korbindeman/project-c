@@ -34,7 +34,11 @@ function ActionCard({ action }: ActionCard) {
 }
 
 async function getOgsms() {
-  const ogsms = await prisma.ogsm.findMany();
+  const ogsms = await prisma.ogsm.findMany({
+    include: {
+      creator: true,
+    },
+  });
   return ogsms;
 }
 
