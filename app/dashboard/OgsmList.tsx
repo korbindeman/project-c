@@ -54,7 +54,7 @@ export default function OgsmList({ ogsms }: Props) {
     <div className="w-full">
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
       <div className="flex justify-between pb-4">
-        <Input placeholder="Search ogsms" className="w-96" onChange={(e) => handleSearch(e.target.value)} />
+        <Input placeholder="Search OGSMs" className="w-96" onChange={(e) => handleSearch(e.target.value)} />
         <DialogDemo CreateFunc={newOgsm} />
       </div>
       <div className="grid grid-cols-3 gap-4">
