@@ -1,12 +1,10 @@
 import hrLogo from "@/public/hr-logo.svg";
 import {
   ArrowLeftOnRectangleIcon,
-  BellIcon,
   Cog6ToothIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
-import Notifications from "./Notifications";
 
 export default function Navbar() {
   return (
@@ -24,11 +22,11 @@ export default function Navbar() {
                 <Cog6ToothIcon className="h-5 w-5 text-neutral-500" />
               </li>
             </div>
-            <Notifications>
+            {/* <Notifications>
               <li className="relative cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
                 <BellIcon className="h-5 w-5 text-neutral-500" />
               </li>
-            </Notifications>
+            </Notifications> */}
             <Link href={"/api/auth/signout"}>
               <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
                 <ArrowLeftOnRectangleIcon className="h-5 w-5 text-neutral-500" />
