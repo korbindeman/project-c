@@ -50,6 +50,11 @@ export default function DialogDemo({ CreateFunc }: DialogInfo) {
               </Button>
             </DialogClose>
           </DialogFooter>
+          
+        }
+        {
+          name == "" &&
+          <h1 className="text-red-600 text-xs text-right">*To create a new OGSM board, please enter a title.</h1>
         }
       </DialogContent>
     </Dialog>
