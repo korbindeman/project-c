@@ -1,17 +1,6 @@
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import {
-  EyeIcon,
-  LinkIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/outline";
+import { LinkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import CopyUrl from "./CopyUrl";
 import FavoriteButton from "./FavoriteButton";
@@ -44,7 +33,7 @@ export default function Header({ title, creator }: Props) {
                   <div className="ml-1 text-sm">Share</div>
                 </Button>
               </CopyUrl>
-              <Select defaultValue="editing">
+              {/* <Select defaultValue="editing">
                 <SelectTrigger className="w-32 focus:ring-0">
                   <SelectValue className="select-none" />
                 </SelectTrigger>
@@ -62,7 +51,7 @@ export default function Header({ title, creator }: Props) {
                     </div>
                   </SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
             </div>
           </div>
         </div>
