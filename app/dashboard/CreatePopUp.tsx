@@ -1,17 +1,24 @@
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-//TODO: do not show the create button when title (or objective) is empty
-
 interface DialogInfo {
-    CreateFunc: (title: string) => void;
-  }
-export default function DialogDemo({CreateFunc}: DialogInfo) {
-  const[name,setName] = useState("");
-   return (
+  CreateFunc: (title: string) => void;
+}
+export default function DialogDemo({ CreateFunc }: DialogInfo) {
+  const [name, setName] = useState("");
+  return (
     <Dialog>
       <DialogTrigger asChild>
         <Button>Create new OGSM</Button>
@@ -26,14 +33,21 @@ export default function DialogDemo({CreateFunc}: DialogInfo) {
             <Label htmlFor="name" className="text-right">
               Title
             </Label>
-            <Input id="name" className="col-span-3" value={name} onChange={(e) => setName(e.target.value)}/>
+            <Input
+              id="name"
+              className="col-span-3"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
         </div>
         {
-          name != "" &&
+          name != "" && //Hide create button if title is empty
           <DialogFooter>
            <DialogClose asChild>
-              <Button type="submit" onClick={() => CreateFunc(name)}>Create</Button>
+              <Button type="submit" onClick={() => CreateFunc(name)}>
+                Create
+              </Button>
             </DialogClose>
           </DialogFooter>
         }
