@@ -26,7 +26,7 @@ export default function Header({ title, creator }: Props) {
             <div className="">
               <Link
                 href="/dashboard"
-                className="flex items-center text-xs text-gray-500 mb-1"
+                className="mb-1 flex items-center text-xs text-gray-500"
               >
                 <ArrowLeftIcon className="h-4 w-4" />
                 Back
