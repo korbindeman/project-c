@@ -1,8 +1,5 @@
 import hrLogo from "@/public/hr-logo.svg";
-import {
-  ArrowLeftOnRectangleIcon,
-  Cog6ToothIcon,
-} from "@heroicons/react/20/solid";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,11 +14,11 @@ export default function Navbar() {
         </div>
         <div className="w-1/3">
           <ul className="flex justify-end gap-2">
-            <div className="">
+            {/* <div className="">
               <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
                 <Cog6ToothIcon className="h-5 w-5 text-neutral-500" />
               </li>
-            </div>
+            </div> */}
             {/* <Notifications>
               <li className="relative cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
                 <BellIcon className="h-5 w-5 text-neutral-500" />
