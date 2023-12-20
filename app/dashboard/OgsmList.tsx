@@ -22,7 +22,7 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
         </CardHeader>
         <CardContent>
           <p className="text-xs text-muted-foreground">Modified 3 mins ago</p>
-        </CardContent>
+        </CardContent> {/*if made functional, save a Date() object to a property of ogsm, update this to the time of the last edit and then display the time that has passed since then above*/}
       </Card>
     </Link>
   );
