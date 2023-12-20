@@ -1,16 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Ogsm } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
+import { OgsmWithIncludes } from "../ogsm/[slug]/state";
 import DialogDemo from "./CreatePopUp";
 import { OgsmWithIncludes } from "../ogsm/[slug]/state";
 
 interface ProjectCardProps {
-  ogsm: Ogsm;
+  ogsm: OgsmWithIncludes;
 }
 function ProjectCard({ ogsm }: ProjectCardProps) {
   return (
@@ -19,7 +18,7 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
         <CardHeader>
           <h3 className="text-sm tracking-tight">{ogsm.title}</h3>
           <p className="text-xs text-muted-foreground">
-            Created by Korbin de Man
+            Created by {ogsm.creator ? ogsm.creator.name : "(could not load creator)" /*shows a placeholder if creator is null for some reason*/}
           </p>
         </CardHeader>
         <CardContent>
@@ -39,12 +38,12 @@ export default function OgsmList({ ogsms }: Props) {
     console.log(searchQuery)
   }
 
-  const newOgsm = async (Title: string, Objective: string) => {
+  const newOgsm = async (title: string) => {
     const res = await fetch("/api/ogsm", {
       method: "POST",
       body: JSON.stringify({
-        title: Title,
-        objective: Objective,
+        title: title,
+        objective: "",
       }),
       headers: {
         "content-type": "application/json",
@@ -57,7 +56,7 @@ export default function OgsmList({ ogsms }: Props) {
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
       <div className="flex justify-between pb-4">
         <Input placeholder="Search ogsms" className="w-96" onChange={(e) => handleSearch(e.target.value)} />
-        <DialogDemo CreateFunc={newOgsm} /> {/*new create OGSM button with UI popup*/}
+        <DialogDemo CreateFunc={newOgsm} />
       </div>
       <div className="grid grid-cols-3 gap-4">
         {ogsmList.map((ogsm: OgsmWithIncludes) => {
