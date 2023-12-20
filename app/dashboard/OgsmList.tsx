@@ -17,7 +17,7 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
         <CardHeader>
           <h3 className="text-sm tracking-tight">{ogsm.title}</h3>
           <p className="text-xs text-muted-foreground">
-            Created by {ogsm.creator? ogsm.creator.name : "(could not load creator)" /*shows a placeholder if creator is null for some reason*/} 
+            Created by {ogsm.creator ? ogsm.creator.name : "(could not load creator)" /*shows a placeholder if creator is null for some reason*/}
           </p>
         </CardHeader>
         <CardContent>
@@ -31,6 +31,11 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
 type Props = { ogsms: any };
 export default function OgsmList({ ogsms }: Props) {
   const [ogsmList, setOgsmList] = useState(ogsms);
+  const [searchQuery, setSearchQuery] = useState("");
+  function handleSearch(value: string) {
+    setSearchQuery(value)
+    console.log(searchQuery)
+  }
 
   const newOgsm = async (title: string) => {
     const res = await fetch("/api/ogsm", {
@@ -49,13 +54,16 @@ export default function OgsmList({ ogsms }: Props) {
     <div className="w-full">
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
       <div className="flex justify-between pb-4">
-        <Input placeholder="Search ogsms" className="w-96" />
+        <Input placeholder="Search ogsms" className="w-96" onChange={(e) => handleSearch(e.target.value)} />
         <DialogDemo CreateFunc={newOgsm} />
       </div>
       <div className="grid grid-cols-3 gap-4">
-        {ogsmList.map((ogsm: any) => (
-          <ProjectCard ogsm={ogsm} key={ogsm.id} />
-        ))}
+        {ogsmList.map((ogsm: OgsmWithIncludes) => {
+          if (ogsm.title.toLowerCase().includes(searchQuery.toLowerCase()) === true) {
+            return <ProjectCard ogsm={ogsm} key={ogsm.id} />
+          }
+
+        })}
       </div>
     </div>
   );
