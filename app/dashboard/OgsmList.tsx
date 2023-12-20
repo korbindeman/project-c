@@ -33,12 +33,12 @@ type Props = { ogsms: any };
 export default function OgsmList({ ogsms }: Props) {
   const [ogsmList, setOgsmList] = useState(ogsms);
 
-  const newOgsm = async (Title: string, Objective: string) => {
+  const newOgsm = async (Title: string) => {
     const res = await fetch("/api/ogsm", {
       method: "POST",
       body: JSON.stringify({
         title: Title,
-        objective: Objective,
+        objective: "",
       }),
       headers: {
         "content-type": "application/json",

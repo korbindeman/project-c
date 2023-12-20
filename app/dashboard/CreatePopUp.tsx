@@ -4,14 +4,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react";
 
-
+//TODO: do not show the create button when title (or objective) is empty
 
 interface DialogInfo {
-    CreateFunc: (title: string, obj: string) => void;
+    CreateFunc: (title: string) => void;
   }
 export default function DialogDemo({CreateFunc}: DialogInfo) {
   const[name,setName] = useState("");
-  const[obj,setObj] = useState("");
    return (
     <Dialog>
       <DialogTrigger asChild>
@@ -29,18 +28,15 @@ export default function DialogDemo({CreateFunc}: DialogInfo) {
             </Label>
             <Input id="name" className="col-span-3" value={name} onChange={(e) => setName(e.target.value)}/>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="obj" className="text-right">
-              Objective
-            </Label>
-            <Input id="obj" className="col-span-3" value={obj} onChange={(e) => setObj(e.target.value)}/>
-          </div>
         </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button type="submit" onClick={() => CreateFunc(name,obj)}>Create</Button>
-          </DialogClose>
-        </DialogFooter>
+        {
+          name != "" &&
+          <DialogFooter>
+           <DialogClose asChild>
+              <Button type="submit" onClick={() => CreateFunc(name)}>Create</Button>
+            </DialogClose>
+          </DialogFooter>
+        }
       </DialogContent>
     </Dialog>
   );
