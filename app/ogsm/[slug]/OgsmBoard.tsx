@@ -70,49 +70,53 @@ export default function OgsmBoard({ ogsm }: Props) {
         }
         className="col-span-4"
       >
-        <Card>
-          {strategies.map((strategy: any) => (
-            <div
-              className="group/strategy relative grid grid-cols-4 border-b last:border-0"
-              key={strategy.id}
-            >
-              <div className="border-r p-1">
-                <TextField
-                  content={strategy.content}
-                  updateField={() => {
-                    return;
-                  }}
-                  id={"999"}
-                  // TODO: temporary
-                />
-              </div>
-              <div className="border-r">
-                <TextFieldGroup
-                  initialContent={strategy.dashboard.map(
-                    (dashboard: Dashboard) => dashboard.content,
-                  )}
-                />
-              </div>
-              <div className="col-span-2">
-                <TextFieldGroup
-                  initialContent={strategy.actions.map(
-                    (action: Action) => action.content,
-                  )}
-                ></TextFieldGroup>
-              </div>
-              <div className="absolute -right-16 top-1/2 hidden -translate-y-1/2 p-4 group-hover/strategy:block">
-                <div
-                  className="cursor-pointer rounded-full bg-red-200 p-2 transition hover:bg-red-300"
-                  onClick={() => deleteStrategy(strategy.id)}
-                >
-                  <XMarkIcon className="h-6 w-6 text-red-500" />
+        {strategies.length === 0 ? (
+          <></>
+        ) : (
+          <Card>
+            {strategies.map((strategy: any) => (
+              <div
+                className="group/strategy relative grid grid-cols-4 border-b last:border-0"
+                key={strategy.id}
+              >
+                <div className="border-r p-1">
+                  <TextField
+                    content={strategy.content}
+                    updateField={() => {
+                      return;
+                    }}
+                    id={"999"}
+                    // TODO: temporary
+                  />
+                </div>
+                <div className="border-r">
+                  <TextFieldGroup
+                    initialContent={strategy.dashboard.map(
+                      (dashboard: Dashboard) => dashboard.content,
+                    )}
+                  />
+                </div>
+                <div className="col-span-2">
+                  <TextFieldGroup
+                    initialContent={strategy.actions.map(
+                      (action: Action) => action.content,
+                    )}
+                  ></TextFieldGroup>
+                </div>
+                <div className="absolute -right-16 top-1/2 hidden -translate-y-1/2 p-4 group-hover/strategy:block">
+                  <div
+                    className="cursor-pointer rounded-full bg-red-200 p-2 transition hover:bg-red-300"
+                    onClick={() => deleteStrategy(strategy.id)}
+                  >
+                    <XMarkIcon className="h-6 w-6 text-red-500" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Card>
+            ))}
+          </Card>
+        )}
         <Card
-          className="mt-2 cursor-pointer p-4 transition hover:bg-gray-100"
+          className="mt-2 cursor-pointer p-4 transition first:mt-0 hover:bg-gray-100"
           onClick={createNewStrategy}
         >
           <span className="flex items-center text-sm text-muted-foreground">
