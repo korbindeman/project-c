@@ -3,7 +3,7 @@ import Header from "./Header";
 import OgsmBoard from "./OgsmBoard";
 
 async function getOgsm(slug: string) {
-  const allOgsm = await prisma.ogsm.findUnique({
+  const allOgsm = await prisma.ogsm.findUniqueOrThrow({
     where: {
       slug: slug,
     },
@@ -32,11 +32,11 @@ export default async function Ogsm({ params }: { params: { slug: string } }) {
   const ogsm = await getOgsm(params.slug);
 
   return (
-    <div className="">
+    <>
       <Header title={ogsm?.title} creator={ogsm?.creator.name} />
       <main className="container mx-auto py-6">
         <OgsmBoard ogsm={ogsm} />
       </main>
-    </div>
+    </>
   );
 }
