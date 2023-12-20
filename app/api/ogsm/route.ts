@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Ogsm } from "@prisma/client";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import slugify from "slugify";
 
 export const dynamic = "force-dynamic"; // defaults to force-static
@@ -63,4 +63,20 @@ export async function POST(request: NextRequest) {
     },
   });
   return Response.json(newOgsm);
+}
+
+export async function DELETE(request: NextRequest) {
+  const ogsm = request.nextUrl.searchParams.get("ogsm")?.toString();
+  const id = parseInt(ogsm!);
+  await prisma.ogsm.delete({
+    where: {
+      id: id,
+    },
+  });
+  return NextResponse.json(
+    {
+      message: `Ogsm with id ${id} successfully deleted`,
+    },
+    { status: 200 },
+  );
 }
