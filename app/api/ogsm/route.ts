@@ -64,3 +64,15 @@ export async function POST(request: NextRequest) {
   });
   return Response.json(newOgsm);
 }
+
+export async function DELETE(request: NextRequest) {
+  const ogsm = request.nextUrl.searchParams.get("ogsm")?.toString();
+  const id = parseInt(ogsm!);
+  try {
+    await prisma.ogsm.delete({
+      where: {
+        id: id,
+      },
+    });
+  } catch {}
+}
