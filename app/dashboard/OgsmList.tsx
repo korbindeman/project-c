@@ -17,7 +17,7 @@ function ProjectCard({ ogsm }: ProjectCardProps) {
         <CardHeader>
           <h3 className="text-sm tracking-tight">{ogsm.title}</h3>
           <p className="text-xs text-muted-foreground">
-            Created by {ogsm.creator.name}
+            Created by {ogsm.creator? ogsm.creator.name : "(could not load creator)" /*shows a placeholder if creator is null for some reason*/} 
           </p>
         </CardHeader>
         <CardContent>
