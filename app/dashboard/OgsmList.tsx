@@ -59,7 +59,7 @@ export default function OgsmList({ ogsms }: Props) {
       </div>
       <div className="grid grid-cols-3 gap-4">
         {ogsmList.map((ogsm: OgsmWithIncludes) => {
-          if (ogsm.title.toLowerCase().includes(searchQuery.toLowerCase()) === true) {
+          if (ogsm.title.toLowerCase().includes(searchQuery.toLowerCase()) === true) { //searchbar functionality
             return <ProjectCard ogsm={ogsm} key={ogsm.id} />
           }
 
