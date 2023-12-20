@@ -50,8 +50,11 @@ export default async function Dashboard() {
     redirect("/api/auth/signin");
   }
 
-  const ogsms = await getOgsms();
-  const actions = await getActions();
+  const ogsms = await prisma.ogsm.findMany({
+    include: {
+      creator: true,
+    },
+  });
 
   return (
     <div className="container mx-auto py-8">
