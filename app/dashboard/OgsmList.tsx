@@ -6,7 +6,7 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { Prisma, User } from "@prisma/client";
 import { useState } from "react";
 import { CreateOgsmButton } from "./CreateOgsmButton";
-import { ProjectCard } from "./ProjectCard";
+import { OgsmCard } from "./OgsmCard";
 
 type OgsmWithCreator = Prisma.OgsmGetPayload<{
   include: {
@@ -64,7 +64,7 @@ const OgsmList = ({ ogsms, user }: OgsmListProps) => {
                     <XMarkIcon className="h-4 w-4 text-gray-500" />
                   </span>
                 </ConfirmDelete>
-                <ProjectCard ogsm={ogsm} />
+                <OgsmCard ogsm={ogsm} />
               </div>
             );
           }

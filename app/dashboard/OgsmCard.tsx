@@ -1,11 +1,11 @@
 import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 
-interface ProjectCardProps {
+interface OgsmCardProps {
   ogsm: any;
 }
 
-const ProjectCard = ({ ogsm }: ProjectCardProps) => {
+const OgsmCard = ({ ogsm }: OgsmCardProps) => {
   return (
     <Link href={`/ogsm/${ogsm.slug}`}>
       <Card>
@@ -20,4 +20,4 @@ const ProjectCard = ({ ogsm }: ProjectCardProps) => {
   );
 };
 
-export { ProjectCard };
+export { OgsmCard };
