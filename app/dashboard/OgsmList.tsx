@@ -38,9 +38,11 @@ const OgsmList = ({ ogsms, user }: OgsmListProps) => {
     setOgsmList([...ogsmList, newOgsm]);
   };
 
-  const deleteOgsm = async (id: number) => {
-    await fetch(`/api/ogsm?ogsm=${id}`, { method: "DELETE" });
-    setOgsmList(ogsmList.filter((ogsm: OgsmWithCreator) => ogsm.id !== id));
+  const deleteOgsm = async (idToDelete: number) => {
+    await fetch(`/api/ogsm?id=${idToDelete}`, { method: "DELETE" });
+    setOgsmList(
+      ogsmList.filter((ogsm: OgsmWithCreator) => ogsm.id !== idToDelete),
+    );
   };
 
   return (
