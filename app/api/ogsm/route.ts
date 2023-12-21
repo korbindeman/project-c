@@ -53,10 +53,12 @@ export async function POST(request: NextRequest) {
   const { title, objective, userId } = await request.json();
   const slug = slugify(`${title}-${Math.floor(Math.random() * 100)}`);
   const newOgsm = await prisma.ogsm.create({
-    include: {},
+    include: {
+      creator: true,
+    },
     data: {
       title,
-      objective,
+      objective: "",
       userId,
       slug,
     },

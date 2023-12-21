@@ -1,76 +1,48 @@
 "use client";
 
 import { ConfirmDelete } from "@/components/ConfirmDelete";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import { User } from "@prisma/client";
-import Link from "next/link";
+import { Prisma, User } from "@prisma/client";
 import { useState } from "react";
-import { OgsmWithIncludes } from "../ogsm/[slug]/state";
-import DialogDemo from "./CreatePopUp";
+import { CreateOgsmButton } from "./CreateOgsmButton";
+import { ProjectCard } from "./ProjectCard";
 
-interface ProjectCardProps {
-  ogsm: OgsmWithIncludes;
-}
-function ProjectCard({ ogsm }: ProjectCardProps) {
-  return (
-    <div className="group relative">
-      <ConfirmDelete
-        deleteCallback={async () => {
-          await fetch(`/api/ogsm?ogsm=${ogsm.id}`, { method: "DELETE" });
-        }}
-      >
-        <span className="absolute right-0 top-6 z-10 hidden -translate-y-1/3 translate-x-1/3 cursor-pointer items-center justify-center rounded-full bg-gray-300 p-0.5 opacity-80 transition hover:opacity-100 group-hover:block">
-          <XMarkIcon className="h-4 w-4 text-gray-500" />
-        </span>
-      </ConfirmDelete>
-      <Link href={`/ogsm/${ogsm.slug}`}>
-        <Card>
-          <CardHeader>
-            <h3 className="text-sm tracking-tight">{ogsm.title}</h3>
-            <p className="text-xs text-muted-foreground">
-              Created by{" "}
-              {
-                ogsm.creator
-                  ? ogsm.creator.name
-                  : "(could not load creator)" /*shows a placeholder if creator is null for some reason*/
-              }
-            </p>
-          </CardHeader>
-          <CardContent>
-            <p className="text-xs text-muted-foreground">Modified 3 mins ago</p>
-          </CardContent>{" "}
-          {/*if made functional, save a Date() object to a property of ogsm, update this to the time of the last edit and then display the time that has passed since then above*/}
-        </Card>
-      </Link>
-    </div>
-  );
+type OgsmWithCreator = Prisma.OgsmGetPayload<{
+  include: {
+    creator: true;
+  };
+}>;
+
+interface OgsmListProps {
+  ogsms: OgsmWithCreator[];
+  user: User;
 }
 
-type Props = { ogsms: any; user: User };
-export default function OgsmList({ ogsms, user }: Props) {
+const OgsmList = ({ ogsms, user }: OgsmListProps) => {
   const [ogsmList, setOgsmList] = useState(ogsms);
   const [searchQuery, setSearchQuery] = useState("");
   function handleSearch(value: string) {
     setSearchQuery(value);
-    console.log(searchQuery);
   }
 
-  const newOgsm = async (title: string) => {
+  const createOgsm = async (title: string) => {
     const res = await fetch("/api/ogsm", {
       method: "POST",
       body: JSON.stringify({
         title: title,
-        objective: "",
         userId: user.id,
       }),
-      headers: {
-        "content-type": "application/json",
-      },
     });
-    setOgsmList([...ogsmList, res.body]);
+    const newOgsm = await res.json();
+    setOgsmList([...ogsmList, newOgsm]);
   };
+
+  const deleteOgsm = async (id: number) => {
+    await fetch(`/api/ogsm?ogsm=${id}`, { method: "DELETE" });
+    setOgsmList(ogsmList.filter((ogsm: OgsmWithCreator) => ogsm.id !== id));
+  };
+
   return (
     <div className="w-full">
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
@@ -80,18 +52,26 @@ export default function OgsmList({ ogsms, user }: Props) {
           className="w-96"
           onChange={(e) => handleSearch(e.target.value)}
         />
-        <DialogDemo CreateFunc={newOgsm} />
+        <CreateOgsmButton createOgsmCallback={createOgsm} />
       </div>
       <div className="grid grid-cols-3 gap-4">
-        {ogsmList.map((ogsm: OgsmWithIncludes) => {
-          if (
-            ogsm.title.toLowerCase().includes(searchQuery.toLowerCase()) ===
-            true
-          ) {
-            return <ProjectCard ogsm={ogsm} key={ogsm.id} />;
+        {ogsmList.map((ogsm: OgsmWithCreator) => {
+          if (ogsm.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+            return (
+              <div className="group relative" key={ogsm.id}>
+                <ConfirmDelete deleteCallback={() => deleteOgsm(ogsm.id)}>
+                  <span className="absolute right-0 top-6 z-10 hidden -translate-y-1/3 translate-x-1/3 cursor-pointer items-center justify-center rounded-full bg-gray-300 p-0.5 opacity-80 transition hover:opacity-100 group-hover:block">
+                    <XMarkIcon className="h-4 w-4 text-gray-500" />
+                  </span>
+                </ConfirmDelete>
+                <ProjectCard ogsm={ogsm} />
+              </div>
+            );
           }
         })}
       </div>
     </div>
   );
-}
+};
+
+export { OgsmList };
