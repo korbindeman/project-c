@@ -67,8 +67,8 @@ function Menu() {
       <Card>
         <div className="p-1">
           <div className="flex select-none gap-1">
-            {buttons.map((buttonGroup) => (
-              <>
+            {buttons.map((buttonGroup, index) => (
+              <div key={index}>
                 {buttonGroup.map((button) => (
                   <Button
                     name={button.name}
@@ -78,7 +78,7 @@ function Menu() {
                   ></Button>
                 ))}
                 <div className="w-px self-stretch bg-neutral-200 last:hidden"></div>
-              </>
+              </div>
             ))}
           </div>
         </div>
