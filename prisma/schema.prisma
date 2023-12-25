@@ -20,13 +20,15 @@ model Ogsm {
   goals      Goal[]
   strategies Strategy[]
   userId     Int
+  createdAt  DateTime   @default(now())
 }
 
 model Goal {
-  id      Int    @id @default(autoincrement())
-  ogsm    Ogsm   @relation(fields: [ogsmId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  content String
-  ogsmId  Int
+  id        Int      @id @default(autoincrement())
+  ogsm      Ogsm     @relation(fields: [ogsmId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  content   String
+  ogsmId    Int
+  createdAt DateTime @default(now())
 }
 
 model Strategy {
@@ -36,6 +38,7 @@ model Strategy {
   dashboard Dashboard[]
   actions   Action[]
   ogsmId    Int
+  createdAt DateTime    @default(now())
 }
 
 model Dashboard {
@@ -43,20 +46,22 @@ model Dashboard {
   strategy   Strategy @relation(fields: [strategyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   content    String
   strategyId Int
+  createdAt  DateTime @default(now())
 }
 
 model Action {
   id         Int      @id @default(autoincrement())
   strategy   Strategy @relation(fields: [strategyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   content    String
-  status     String
   strategyId Int
+  createdAt  DateTime @default(now())
 }
 
 model User {
-  id            Int    @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   name          String
   email         String
   password      String
   created_ogsms Ogsm[]
+  createdAt     DateTime @default(now())
 }

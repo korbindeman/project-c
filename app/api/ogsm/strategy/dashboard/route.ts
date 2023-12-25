@@ -3,40 +3,35 @@ import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   const { content, strategyId } = await request.json();
-  const newStrategy = await prisma.dashboard.create({
+  const createdDashboard = await prisma.dashboard.create({
     data: {
       content,
       strategyId,
     },
   });
-  return Response.json(newStrategy);
+  return Response.json(createdDashboard, { status: 201 });
 }
 
 export async function PUT(request: NextRequest) {
   const { content, id } = await request.json();
-  const newDashboard = await prisma.dashboard.update({
+  const updatedDashboard = await prisma.dashboard.update({
     where: {
-      id: id,
+      id,
     },
     data: {
       content,
     },
   });
 
-  return Response.json({ newDashboard });
+  return Response.json({ updatedDashboard });
 }
 
 export async function DELETE(request: NextRequest) {
   const id = parseInt(request.nextUrl.searchParams.get("id")!);
   await prisma.dashboard.delete({
     where: {
-      id: id,
+      id,
     },
   });
-  return Response.json(
-    {
-      message: `Dashboard with id ${id} successfully deleted`,
-    },
-    { status: 200 },
-  );
+  return Response.json({}, { status: 204 });
 }
