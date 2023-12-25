@@ -48,7 +48,7 @@ const OgsmList = ({ ogsms, user }: OgsmListProps) => {
   return (
     <div className="w-full">
       <h2 className="mb-4 text-2xl font-semibold tracking-tight">Your OGSMs</h2>
-      <div className="flex justify-between pb-4">
+      <div className="flex justify-between">
         <Input
           placeholder="Search ogsms"
           className="w-96"
