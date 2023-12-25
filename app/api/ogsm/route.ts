@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { Ogsm } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import slugify from "slugify";
 
@@ -34,23 +33,21 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
-  const updatedOgsm: Ogsm[] = await request.json();
-  updatedOgsm.forEach(async (ogsm: Ogsm) => {
-    await prisma.ogsm.update({
-      where: {
-        slug: ogsm.slug,
-      },
-      data: {
-        title: ogsm.title,
-        objective: ogsm.objective,
-      },
-    });
-    return Response.json({ updatedOgsm });
+  const { objective, id } = await request.json();
+  const updatedOgsm = await prisma.ogsm.update({
+    where: {
+      id,
+    },
+    data: {
+      objective,
+    },
   });
+
+  return Response.json({ updatedOgsm });
 }
 
 export async function POST(request: NextRequest) {
-  const { title, objective, userId } = await request.json();
+  const { title, userId } = await request.json();
   const slug = slugify(`${title}-${Math.floor(Math.random() * 100)}`);
   const newOgsm = await prisma.ogsm.create({
     include: {
@@ -67,8 +64,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const ogsm = request.nextUrl.searchParams.get("ogsm")?.toString();
-  const id = parseInt(ogsm!);
+  const id = parseInt(request.nextUrl.searchParams.get("id")!);
   await prisma.ogsm.delete({
     where: {
       id: id,

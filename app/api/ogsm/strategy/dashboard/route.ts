@@ -1,21 +1,42 @@
 import { prisma } from "@/lib/prisma";
-import { Dashboard } from "@prisma/client";
 import { NextRequest } from "next/server";
 
+export async function POST(request: NextRequest) {
+  const { content, strategyId } = await request.json();
+  const newStrategy = await prisma.dashboard.create({
+    data: {
+      content,
+      strategyId,
+    },
+  });
+  return Response.json(newStrategy);
+}
+
 export async function PUT(request: NextRequest) {
-  // TODO: make this error if no  strategies are given
-  const dashboardsUpdated: Dashboard[] = await request.json();
-  dashboardsUpdated.forEach(async (dashboard: Dashboard) => {
-    await prisma.dashboard.update({
-      where: {
-        //ogsmId: goal.ogsmId,
-        id: dashboard.id,
-      },
-      data: {
-        content: dashboard.content,
-      },
-    });
+  const { content, id } = await request.json();
+  const newDashboard = await prisma.dashboard.update({
+    where: {
+      id: id,
+    },
+    data: {
+      content,
+    },
   });
 
-  return Response.json({ dashboardsUpdated });
+  return Response.json({ newDashboard });
+}
+
+export async function DELETE(request: NextRequest) {
+  const id = parseInt(request.nextUrl.searchParams.get("id")!);
+  await prisma.dashboard.delete({
+    where: {
+      id: id,
+    },
+  });
+  return Response.json(
+    {
+      message: `Dashboard with id ${id} successfully deleted`,
+    },
+    { status: 200 },
+  );
 }

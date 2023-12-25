@@ -107,7 +107,7 @@ export default function RichTextField({
         },
       }}
       onCreate={({ editor }) => {
-        editor.commands.focus();
+        editor.commands.focus("end");
       }}
       onUpdate={({ editor }) => {
         const content = editor.getText();

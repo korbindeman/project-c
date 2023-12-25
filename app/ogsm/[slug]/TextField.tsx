@@ -1,21 +1,24 @@
 import RichTextField from "@/components/RichTextField";
-import { useCurrentEditor } from "@tiptap/react";
+import { useDebouncedCallback } from "use-debounce";
 
 // using RichTextField, with additional styling (e.a. bg change on hover), sending the value back to the TextFieldGroup on update
 type Props = {
   content: string;
-  id: string;
-  updateField: (newContent: string, fieldId: string) => void;
+  id: number;
+  updateField: (id: number, newContent: string) => any;
 };
 const TextField = ({ content, updateField, id }: Props) => {
-  const { editor } = useCurrentEditor();
+  const debounced = useDebouncedCallback(
+    (newContent) => updateField(id, newContent),
+    50,
+  );
 
   return (
     <div className="rounded-md transition hover:bg-gray-100 group-hover:bg-gray-100">
       <RichTextField
         content={content}
         className="max-w-full p-1"
-        updateContent={(content) => updateField(content, id)}
+        updateContent={debounced}
       />
     </div>
   );

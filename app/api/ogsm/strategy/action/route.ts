@@ -1,20 +1,43 @@
 import { prisma } from "@/lib/prisma";
-import { Action } from "@prisma/client";
 import { NextRequest } from "next/server";
 
+export async function POST(request: NextRequest) {
+  const { content, strategyId } = await request.json();
+  const newStrategy = await prisma.action.create({
+    data: {
+      content,
+      status: "",
+      strategyId,
+    },
+  });
+  return Response.json(newStrategy);
+}
+
 export async function PUT(request: NextRequest) {
-  // TODO: make this error if no  strategies are given
-  const actionsUpdated: Action[] = await request.json();
-  actionsUpdated.forEach(async (action: Action) => {
-    await prisma.action.update({
-      where: {
-        id: action.id,
-      },
-      data: {
-        content: action.content,
-      },
-    });
+  const { content, id } = await request.json();
+  const newAction = await prisma.action.update({
+    where: {
+      id,
+    },
+    data: {
+      content,
+    },
   });
 
-  return Response.json({ actionsUpdated });
+  return Response.json({ newAction });
+}
+
+export async function DELETE(request: NextRequest) {
+  const id = parseInt(request.nextUrl.searchParams.get("id")!);
+  await prisma.action.delete({
+    where: {
+      id: id,
+    },
+  });
+  return Response.json(
+    {
+      message: `Action with id ${id} successfully deleted`,
+    },
+    { status: 200 },
+  );
 }
