@@ -4,6 +4,7 @@ import { LinkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import CopyUrl from "./CopyUrl";
 import FavoriteButton from "./FavoriteButton";
+import SaveButton from "./SaveButton";
 
 type Props = { title: string | undefined; creator: string | undefined };
 export default function Header({ title, creator }: Props) {
@@ -26,6 +27,7 @@ export default function Header({ title, creator }: Props) {
               </p>
             </div>
             <div className="flex gap-2 text-gray-600">
+              <SaveButton />
               <FavoriteButton />
               <CopyUrl>
                 <Button className="flex items-center p-2" variant="outline">
