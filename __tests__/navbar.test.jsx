@@ -9,7 +9,7 @@ describe('Navbar', () => {
     const image = screen.getByAltText('Hogeschool logo')
     const link = image.parentElement
 
-    expect(link).toBeInTheDocument()
+    expect(image).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/dashboard')
   })
 })
@@ -20,6 +20,9 @@ describe('Navbar', () => {
     render(<Navbar />);
 
     const signoutButton = screen.getByTestId("signout-button");
+    const link = signoutButton.parentElement
+
     expect(signoutButton).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/api/auth/signout')
   });
 });
