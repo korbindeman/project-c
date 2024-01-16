@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import Page from '../app/Navbar.tsx'
+import Navbar from '../app/Navbar.tsx'
  
-describe('Page', () => {
+describe('Navbar', () => {
   it('renders a link', () => {
-    render(<Page />)
+    render(<Navbar />)
  
     const image = screen.getByAltText('Hogeschool logo')
     const link = image.parentElement
@@ -13,3 +13,13 @@ describe('Page', () => {
     expect(link).toHaveAttribute('href', '/dashboard')
   })
 })
+
+
+describe('Navbar', () => {
+  it('renders signout button', () => {
+    render(<Navbar />);
+
+    const signoutButton = screen.getByTestId("signout-button");
+    expect(signoutButton).toBeInTheDocument();
+  });
+});

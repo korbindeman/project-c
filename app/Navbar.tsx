@@ -25,7 +25,10 @@ export default function Navbar() {
               </li>
             </Notifications> */}
             <Link href={"/api/auth/signout"}>
-              <li className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200">
+              <li
+                className="cursor-pointer rounded-full bg-neutral-100 p-2 transition hover:bg-neutral-200"
+                data-testid="signout-button"
+              >
                 <ArrowLeftOnRectangleIcon className="h-5 w-5 text-neutral-500" />
               </li>
             </Link>
