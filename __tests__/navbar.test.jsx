@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import Navbar from '../app/Navbar.tsx'
  
 describe('Navbar', () => {
-  it('renders a home link', () => {
+  it('renders a home button', () => {
     render(<Navbar />)
  
     const image = screen.getByAltText('Hogeschool logo')
